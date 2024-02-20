@@ -1,0 +1,41 @@
+{
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "我的运单"
+      }
+    }, {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "台州斯坦森铜业"
+      }
+    },{
+      "path": "pages/personalCenter/personalCenter",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/personalinformation/personalinformation",
+      "style": {
+        "navigationBarTitleText": "个人信息"
+
+      }
+    }
+
+  ],
+  "subPackages": [
+    {
+      "root": "subPages",
+      "pages": []
+    }
+  ],
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationStyle": "default",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  }
+}
