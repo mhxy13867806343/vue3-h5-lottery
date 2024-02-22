@@ -17,5 +17,6 @@
 <template>
     <view>
         首页数据
+	    <Mtabbar />
     </view>
 </template>

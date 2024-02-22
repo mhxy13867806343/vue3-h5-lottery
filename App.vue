@@ -41,4 +41,7 @@
 </script>
 <style lang="scss">
     @import '@/uni_modules/uv-ui-tools/index.scss';
+    .app-container{
+	    padding: 30rpx;
+    }
 </style>

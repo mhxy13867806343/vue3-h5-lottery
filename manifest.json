@@ -1,5 +1,5 @@
 {
-    "name": "供应链发货小程序",
+    "name": "抽奖",
     "appid": "__UNI__EAE0802",
     "description": "",
     "versionName": "1.0.0",
@@ -53,7 +53,7 @@
         "optimization": {
             "subPackages": true
         },
-        "appid": "wx51ec52d66494ff90",
+        "appid": "",
         "setting": {
             "urlCheck": false,
             "es6": true,
@@ -70,7 +70,7 @@
     },
     "mp-alipay": {
         "usingComponents": true,
-        "appid": "2021003175674237"
+        "appid": ""
     },
     "mp-baidu": {
         "usingComponents": true

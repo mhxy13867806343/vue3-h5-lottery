@@ -6,9 +6,24 @@ export default {
 			type: Number,
 			default: 0
 		},
+		type:{
+			type:Number,
+			default:1
+		},
 		array:{
 			type:Array,
-			default:[]
+			default(){
+				return [
+					{
+						text:'首页',
+						icon:'home'
+					},
+					{
+						text:'个人中心',
+						icon:'account'
+					}
+				]
+			}
 		}
 	},
 	data(){
@@ -16,12 +31,12 @@ export default {
 			active:this.current||0,
 			menuList:[
 				{
-					text:'我的订单',
-					icon:''
+					text:'首页',
+					icon:'home'
 				},
 				{
 					text:'个人中心',
-					icon:''
+					icon:'account'
 				}
 			],
 			customStyle:{}
@@ -30,26 +45,42 @@ export default {
 	computed:{
 		menuArray(){
 			let list=[];
-			if(this.list.length){
-				list=this.list
+			if(this.array.length){
+				list=this.array
 			}else{
 				list=this.menuList
 			}
 			return list
+		}
+	},
+	methods:{
+		change(index){
+			const router=[
+				'/pages/home/home',
+				'/pages/personalCenter/personalCenter'
+			]
+		
+			if(this.type===1){
+				uni.switchTab({
+					url:router[index]
+				})
+				this.active=index
+			}
+			
+			this.$emit('change',index)
 		}
 	}
 }
 </script>
 
 <template>
-	<uv-tabbar :value="active" @change="index=>$emit('change', index)"
+	<uv-tabbar :value="active" @change="change"
 	           border
 	           fixed placeholder
 	           :zIndex="5"
-	           activeColor=""
+	           activeColor="#f56c6c"
 	           inactiveColor=""
-	           iconSize=""
-	           :customStyle="customStyle"
+	           iconSize="30"
 	>
 		<uv-tabbar-item :text="item.text" :icon="item.icon"
 		 

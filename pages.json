@@ -4,12 +4,12 @@
     {
       "path": "pages/home/home",
       "style": {
-        "navigationBarTitleText": "我的运单"
+        "navigationBarTitleText": "首页"
       }
     }, {
       "path": "pages/login/login",
       "style": {
-        "navigationBarTitleText": "台州斯坦森铜业"
+        "navigationBarTitleText": "登录"
       }
     },{
       "path": "pages/personalCenter/personalCenter",

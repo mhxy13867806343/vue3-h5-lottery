@@ -9,6 +9,7 @@ onLoad(()=>{
 	<view>
 	test123
 		<view>{{ a+1}}</view>
+		<Mtabbar />
 	</view>
 </template>
 
