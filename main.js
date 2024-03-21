@@ -7,6 +7,7 @@ import VueCompositionAPI from '@vue/composition-api'
 import Mtabbar from "@/components/Mtabbar/index.vue";
 dayjs.locale('zh-cn'); // 设置语言为中文
 import '.env.js'
+import Vant from './node_modules/vant/lib/vant';
 import store from './store'
 import '@/common/date-format.js'
 Vue.use(VueCompositionAPI)
@@ -20,6 +21,7 @@ App.mpType = 'app'
 const app = new Vue({
     ...App
 })
+Vue.use(Vant);
 app.$mount()
 // #endif
 

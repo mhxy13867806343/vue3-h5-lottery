@@ -25,7 +25,7 @@
 							@tap="clickHandler(item, index)"
 							:ref="`uv-tabs__wrapper__nav__item-${index}`"
 							:style="[{flex: scrollable ? '' : 1},$uv.addStyle(itemStyle)]"
-							:class="[`uv-tabs__wrapper__nav__item-${index}`, item.disabled && 'uv-tabs__wrapper__nav__item--disabled']"
+							:class="[numWidthLength,`uv-tabs__wrapper__nav__item-${index}`, item.disabled && 'uv-tabs__wrapper__nav__item--disabled']"
 						>
 							<text
 								:class="[item.disabled && 'uv-tabs__wrapper__nav__item__text--disabled']"
@@ -109,7 +109,7 @@
 	 * @property {String}	keyName	从list元素对象中读取的键名（默认 'name' ）
 	 * @property {String | Number}	swierWidth			swiper的宽度（默认 '750rpx' ）
 	 * @property {String | Object}	customStyle	 自定义外部样式
-	 * 
+	 *
 	 * @event {Function(index)} change 标签改变时触发 index: 点击了第几个tab，索引从0开始
 	 * @event {Function(index)} click 点击标签时触发 index: 点击了第几个tab，索引从0开始
 	 * @example <uv-tabs :list="list" :is-scroll="false" :current="current" @change="change"></uv-tabs>
@@ -168,6 +168,13 @@
 			},
 			propsBadge() {
 				return uvBadgeProps
+			},
+			numWidthLength(){
+				const numWidth = this.list.length/this.numWidth*100
+				if(numWidth <6){
+					return `uv-tabs__wrapper__nav__item-numWidth${this.list.length/this.numWidth*100}`
+				}
+				return `uv-tabs__wrapper__nav__item-numWidth-auto`
 			}
 		},
 		async mounted() {

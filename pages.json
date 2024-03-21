@@ -14,7 +14,8 @@
     },{
       "path": "pages/personalCenter/personalCenter",
       "style": {
-        "navigationBarTitleText": "个人中心"
+        "navigationStyle": "custom" ,// 隐藏系统导航栏
+        "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
       }
     },
     {
@@ -30,7 +31,7 @@
   "path": "pages/registered/registered",
   "style": {
     "navigationBarTitleText": "注册",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   }
 }
     ,
@@ -38,7 +39,7 @@
   "path": "pages/signature/signature",
   "style": {
     "navigationBarTitleText": "签名",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   }
 }
     ,
@@ -46,7 +47,24 @@
   "path": "pages/dynamic/dynamic",
   "style": {
     "navigationBarTitleText": "动态",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/userUpdate/userUpdate",
+  "style": {
+    "navigationBarTitleText": "修改信息",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/myDynamics/myDynamics",
+  "style": {
+    "navigationBarTitleText": "我的动态",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "custom"
   }
 }
   ],

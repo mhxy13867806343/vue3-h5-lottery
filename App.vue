@@ -36,9 +36,12 @@
         }
     }
 </script>
+<style>
+/* 每个页面公共css，这个如果不引入的话会出现vant组件可以使用但是没有样式（注意后缀一定要带） */
+@import '@/node_modules/vant/lib/index.css';
+</style>
 <style lang="scss">
     @import '@/uni_modules/uv-ui-tools/index.scss';
-    .app-container{
-	    padding: 30rpx;
-    }
+   
+    
 </style>
