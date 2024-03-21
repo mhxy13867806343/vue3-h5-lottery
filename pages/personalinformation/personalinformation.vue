@@ -1,40 +1,7 @@
 <script setup>
-import {ref} from '@vue/composition-api'
-const current = ref(0)
-const list=ref([{
-	name: '所有'
-}, {
-	name: '私有'
-}])
-const handleTabChange = ({index}) => {
-	current.value=index
-}
-const handleTransition=({detail})=>{
-	current.value=detail.current
-}
 </script>
 <template>
 	<view class="app-container">
-		<uv-tabs
-			:list="list"
-			lineColor="#f56c6c"
-			:activeStyle="{
-			color: '#303133',
-			fontWeight: 'bold',
-			transform: 'scale(1.05)',
-    	}"
-			:current="current"
-			@change="handleTabChange"
-			:scrollable="list.length>7"
-		></uv-tabs>
-		<swiper class="swiper" circular  :autoplay="false" :interval="3000"
-		        :current="current"
-		        @change="handleTransition"
-		        :duration="500">
-			<swiper-item v-for="(item, index) in list" :key="index">
-				<view class="swiper-item uni-bg-red">{{ item.name}}</view>
-			</swiper-item>
-		</swiper>
 		<uv-cell-group >
 			<uv-cell title="当前用户昵称" isLink url="/pages/userUpdate/userUpdate"
 			value="去修改昵称"

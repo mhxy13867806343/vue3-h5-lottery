@@ -1,17 +1,8 @@
 <script setup>
-const showPopover=ref(false)
-
-const actions = [
-	{text: '个人信息',url: '/pages/personalinformation/personalinformation'},
-	{ text: '发动态',url: '/pages/dynamic/dynamic'},
-	{ text: '去签名',url: '/pages/signature/signature'},
-]
-
-onShow(()=>{
-	console.log('onUnload')
-	showPopover.value=false
-	
-})
+import  dicts from '@/common/dicts'
+import useMenu from "@/hooks/useMenu";
+const { showPopover } = useMenu();
+const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1))
 </script>
 <template>
 	<view>
@@ -23,10 +14,10 @@ onShow(()=>{
 					trigger="click"  theme="dark"
 					v-model="showPopover"
 					placement="bottom-end"
-					:actions="actions"
+					:actions="newsList"
 				>
 					<uv-cell center :title="item.text"
-					         v-for="(item, index) in actions"
+					         v-for="(item, index) in dicts.personMenuList"
 					         isLink :url="item.url"
 					         :titleStyle="{
 								 color: '#fff',
