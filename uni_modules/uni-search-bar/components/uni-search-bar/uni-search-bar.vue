@@ -176,10 +176,8 @@
 				})
 			},
 			clear() {
-				this.$emit("clear", {
-					value: this.searchVal
-				})
 				this.searchVal = ""
+				this.$emit("clear", '');
 			},
 			cancel() {
 				if(this.readonly) return
@@ -271,6 +269,7 @@
 		color: #333;
 		margin-left: 5px;
 		margin-top: 1px;
+		background-color: inherit;
 	}
 
 	.uni-searchbar__box-icon-clear {

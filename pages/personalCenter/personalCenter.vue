@@ -6,11 +6,10 @@ onLoad(()=>{
 })
 </script>
 <template>
-	<view>
-	test123
-		<view>{{ a+1}}</view>
-		<Mtabbar />
-	</view>
+	<uv-cell-group title="静态功能">
+		<uv-cell center title="发动态" isLink url="/pages/dynamic/dynamic"></uv-cell>
+		<uv-cell center title="去签名" isLink url="/pages/signature/signature"></uv-cell>
+	</uv-cell-group>
 </template>
 
 

@@ -25,6 +25,30 @@
       }
     }
 
+    ,
+    {
+  "path": "pages/registered/registered",
+  "style": {
+    "navigationBarTitleText": "注册",
+    "enablePullDownRefresh": true
+  }
+}
+    ,
+    {
+  "path": "pages/signature/signature",
+  "style": {
+    "navigationBarTitleText": "签名",
+    "enablePullDownRefresh": true
+  }
+}
+    ,
+    {
+  "path": "pages/dynamic/dynamic",
+  "style": {
+    "navigationBarTitleText": "动态",
+    "enablePullDownRefresh": true
+  }
+}
   ],
   "subPackages": [
     {
@@ -37,5 +61,23 @@
     "navigationStyle": "default",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#e2785f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "fontSize": "24rpx",
+    "list": [{
+      "pagePath": "pages/home/home",
+      "iconPath": "static/tabbar/home.png",
+      "selectedIconPath": "static/tabbar/home1.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/personalCenter/personalCenter",
+      "iconPath": "static/tabbar/user3.png",
+      "selectedIconPath": "static/tabbar/user1.png",
+      "text": "个人中心"
+    }]
   }
 }

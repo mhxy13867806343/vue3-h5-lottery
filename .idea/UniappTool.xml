@@ -10,5 +10,6 @@
     <option name="type" value="store" />
     <option name="uniapp" value="true" />
     <option name="uniappHx" value="true" />
+    <option name="vueVersion" value="2" />
   </component>
 </project>

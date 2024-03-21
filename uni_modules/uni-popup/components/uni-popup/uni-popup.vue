@@ -5,7 +5,7 @@
 				:duration="duration" :show="showTrans" @click="onTap" />
 			<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration"
 				:show="showTrans" @click="onTap">
-				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
+				<view class="uni-popup__wrapper" :style="getStyles" :class="[popupstyle]" @click="clear">
 					<slot />
 				</view>
 			</uni-transition>
@@ -86,6 +86,9 @@
 				type: String,
 				default: 'rgba(0, 0, 0, 0.4)'
 			},
+			borderRadius:{
+				type: String,
+			}
 		},
 
 		watch: {
@@ -157,6 +160,8 @@
 					backgroundColor: 'rgba(0, 0, 0, 0.4)'
 				},
 				transClass: {
+					backgroundColor: 'transparent',
+					borderRadius: this.borderRadius || "0",
 					position: 'fixed',
 					left: 0,
 					right: 0
@@ -167,6 +172,13 @@
 			}
 		},
 		computed: {
+			getStyles() {
+				let res = { backgroundColor: this.bg };
+				if (this.borderRadius || "0") {
+					res = Object.assign(res, { borderRadius: this.borderRadius })
+				}
+				return res;
+			},
 			isDesktop() {
 				return this.popupWidth >= 500 && this.popupHeight >= 500
 			},
@@ -323,7 +335,8 @@
 					position: 'fixed',
 					left: 0,
 					right: 0,
-					backgroundColor: this.bg
+					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0"
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -347,7 +360,8 @@
 					right: 0,
 					bottom: 0,
 					paddingBottom: this.safeAreaInsets + 'px',
-					backgroundColor: this.bg
+					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -359,7 +373,13 @@
 			 */
 			center(type) {
 				this.popupstyle = 'center'
-				this.ani = ['zoom-out', 'fade']
+				//微信小程序下，组合动画会出现文字向上闪动问题，再此做特殊处理
+				// #ifdef MP-WEIXIN
+					this.ani = ['fade']
+				// #endif
+				// #ifndef MP-WEIXIN
+					this.ani = ['zoom-out', 'fade']
+				// #endif
 				this.transClass = {
 					position: 'fixed',
 					/* #ifndef APP-NVUE */
@@ -371,7 +391,8 @@
 					right: 0,
 					top: 0,
 					justifyContent: 'center',
-					alignItems: 'center'
+					alignItems: 'center',
+					borderRadius:this.borderRadius || "0"
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -387,6 +408,7 @@
 					bottom: 0,
 					top: 0,
 					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 					/* #ifndef APP-NVUE */
 					display: 'flex',
 					flexDirection: 'column'
@@ -406,6 +428,7 @@
 					right: 0,
 					top: 0,
 					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 					/* #ifndef APP-NVUE */
 					display: 'flex',
 					flexDirection: 'column'

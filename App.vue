@@ -4,17 +4,14 @@
     export default {
         onLaunch: function() {
             console.log('App Launch')
-	        uni.hideTabBar();
-	        this.isverifyToken()
+	        // this.isverifyToken()
         },
         onShow: function() {
             console.log('App Show')
-	        uni.hideTabBar();
-			this.isverifyToken()
+			// this.isverifyToken()
         },
         onHide: function() {
             console.log('App Hide')
-	        uni.hideTabBar();
         },
         computed: {
 
