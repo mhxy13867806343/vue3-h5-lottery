@@ -1,7 +1,7 @@
 <script setup>
 import  dicts from '@/common/dicts'
 import useMenu from "@/hooks/useMenu";
-const { showPopover } = useMenu();
+const { showPopover } = useMenu({type:'person'});
 const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1))
 </script>
 <template>

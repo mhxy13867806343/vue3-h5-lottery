@@ -97,7 +97,7 @@
 	 * @tutorial https://www.uvui.cn/components/qrcode.html
 	 * @property {String}	 value	 二维码内容 (start为true时必填 )
 	 * @property {Object}	 options  二维码配置选项 (data|size|margin...)
-	 * @property {String}	 fileType  导出的文件类型  (jpg | png)  
+	 * @property {String}	 fileType  导出的文件类型  (jpg | png)
 	 * @property {String}	 start  是否初始化组件后就开始生成 (默认 true)
 	 * @property {String}	 auto  是否数据发生改变自动重绘 (默认 false)
 	 * @property {String}	 hide  隐藏组件。如果只需要导出二维码作为图片使用，可设置为true，不能在组件或组件父级元素设置v-if="false"、v-show="false"、style="display:none;"等实现隐藏效果，这样会导致导出二维码空白  (默认 false)
@@ -106,7 +106,7 @@
 	 * @property {String}	 isQueueLoadImage  是否队列加载图片，选择true将通过队列缓存所需要加载的图片。优点是加载重复资源可减少资源请求次数，节省网络资源，缺点是会转化为同步请求，资源不重复且多的情况下，等待时间会更久。总之，请求重复资源较多则选择true，请求不重复资源较多则选择false (默认 false)
 	 * @property {String}	 loading  loading态 (默认 false)
 	 * @property {String}	 h5SaveIsDownload  H5保存即自动下载（在支持的环境下），默认false为仅弹层提示用户需要长按图片保存，不会自动下载 (默认 false)
-	 * @property {String}	 h5DownloadName  H5下载名称 
+	 * @property {String}	 h5DownloadName  H5下载名称
 	 * @property {String}	 h5SaveTip  H5保存二维码时候是否显示提示
 	 * @example <uv-qrcode ref="uvqrcode" size="400rpx" canvas-id="qrcode" value="https://www.uvui.cn"></uv-qrcode>
 	 */

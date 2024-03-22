@@ -1,5 +1,6 @@
 <script setup>
 import useTabList from "@/hooks/useTabList";
+import UvCell from "@/uni_modules/uv-cell/components/uv-cell/uv-cell.vue";
 const {current,
 	search,
 	tabList,
@@ -42,9 +43,10 @@ const {current,
 		        :duration="500">
 		</swiper>
 		<scroll-view   scroll-y="true" class="scroll-Y"  scroll-x="true">
-			<view v-for="(item, index) in 300" :key="index">
-				{{item}}
-			</view>
+			<uv-cell  v-for="(item, index) in 300" :key="index" :url="`/pages/detailDynamics/detailDynamics?id=${item}`"
+			:title="`动态${item}`"
+			          :border="false"
+			/>
 		</scroll-view>
 	</view>
 </template>

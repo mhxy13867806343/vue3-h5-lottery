@@ -67,6 +67,15 @@
     "navigationStyle": "custom"
   }
 }
+    ,
+    {
+  "path": "pages/detailDynamics/detailDynamics",
+  "style": {
+    "navigationBarTitleText": "动态详情",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "custom"
+  }
+}
   ],
   "subPackages": [
     {
