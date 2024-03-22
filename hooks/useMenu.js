@@ -16,6 +16,10 @@ export default (options={})=>{
     const onItemSelect=(item)=>{
         if(item.type==="share-click"){
             showShare.value=true
+        }if(item.type==="click"){
+            uni.navigateTo({
+                url:item.url
+            })
         }
     }
     const onItemShareSelect=(item)=>{

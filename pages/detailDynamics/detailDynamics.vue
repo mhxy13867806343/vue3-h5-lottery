@@ -5,6 +5,16 @@ const { showPopover,showShare,onItemSelect,onItemShareSelect,qRCodeShow,shareTex
 const content=ref()
 const refUvQrcode=ref()
 const isShowShare=ref(false)
+const fabContent=ref([
+	{
+		iconPath: '/static/index/home.png',
+		selectedIconPath: '/static/index/homefill.png',
+		text: '首页',
+		active: false,
+		type:'switchTab',
+		url: '/pages/home/home'
+	}
+])
 onLoad((options) => {
 	console.log(options,2222)
 	uni.setNavigationBarTitle({
@@ -71,6 +81,34 @@ const quitQrCode=()=>{
 	qRCodeShow.value=false
 	refUvQrcode.value=null
 }
+const onItemFabClickTrigger=e=>{
+	const {type,url,text}=fabContent.value[ e.index ]
+	if(type=='switchTab'){
+		uni.showModal({
+			title: '提示',
+			content: `是否要返回${text}`,
+			success:res=> {
+				if (res.confirm) {
+					uni.switchTab({
+						url,
+						success:()=>{
+							uni.showToast({
+								title: '返回成功',
+							icon: 'none'
+							})
+						}
+					})
+				} else if (res.cancel) {
+					uni.showToast({
+						title: '已取消',
+						icon: 'none'
+					})
+				}
+			}
+		});
+		
+	}
+}
 </script>
 <template>
 	<view >
@@ -97,6 +135,13 @@ const quitQrCode=()=>{
 			</uv-cell-group>
 			<uv-parse :content="content" lazy-load	 selectable	></uv-parse>
 		</view>
+		<uni-fab
+			@trigger="onItemFabClickTrigger"
+			:content="fabContent"
+			horizontal="right"
+			vertical="bottom"
+			direction="horizontal"
+		></uni-fab>
 		<van-share-sheet
 			v-model="showShare"
 			title="立即分享给好友"
@@ -142,11 +187,11 @@ const quitQrCode=()=>{
 	}
 	.uv-button-wrapper {
 		position: absolute;
-		bottom: 33%;
+		bottom: 30%;
 		width: 140rpx;
 	}
 	.uv-button-wrapper-next{
-		bottom: 28%;
+		bottom: 23%;
 	}
 }
 </style>

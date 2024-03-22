@@ -4,31 +4,21 @@
 			<text>{{label}}</text>
 		</view>
 		<view class="uni-combox__input-box">
-			<input class="uni-combox__input" type="text" :placeholder="placeholder"
-			placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus"
+			<input class="uni-combox__input" type="text" :placeholder="placeholder" 
+			placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus" 
 @blur="onBlur" />
-			<image src="https://wxjc.fanski.com/h5/images/up.png" v-if="showSelector" style="width:50rpx;height: 50rpx;" @click="toggleSelector"/>
-			<image src="https://wxjc.fanski.com/h5/images/down.png" v-else style="width:50rpx;height: 50rpx;" @click="toggleSelector"/>
-			<!-- <uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @click="toggleSelector"></uni-icons> -->
+			<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @click="toggleSelector">
+			</uni-icons>
 		</view>
-		<view class="uni-combox__selector" v-if="showSelector" style="z-index: 999;">
+		<view class="uni-combox__selector" v-if="showSelector">
 			<view class="uni-popper__arrow"></view>
 			<scroll-view scroll-y="true" class="uni-combox__selector-scroll">
 				<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
 					<text>{{emptyTips}}</text>
 				</view>
-				
-				<view v-for="(item,index) in filterCandidates" :key="index"
+				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" 
 				@click="onSelectorClick(index)">
-				<view class="uni-combox__selector-item justify-start rich-txt" v-if="index%2==1">
-					<rich-text class="justify-start" :nodes="item"></rich-text>
-				</view>
-				<view class="uni-combox__selector-item justify-start" v-else>
-					<rich-text class="justify-start" :nodes="item"></rich-text>
-				</view>
-				<!-- <rich-text class="rich-txt justify-start" :nodes="item" v-if="index%2==1"></rich-text>
-				<rich-text class="justify-start" :nodes="item" v-else></rich-text> -->
-					<!-- <text>{{item}}</text> -->
+					<text>{{item}}</text>
 				</view>
 			</scroll-view>
 		</view>
@@ -138,9 +128,9 @@
 				this.showSelector = true
 			},
 			onBlur() {
-				// setTimeout(() => {
-				// 	this.showSelector = false
-				// }, 153)
+				setTimeout(() => {
+					this.showSelector = false
+				}, 153)
 			},
 			onSelectorClick(index) {
 				this.inputVal = this.filterCandidates[index]
@@ -159,9 +149,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.rich-txt{
-				background-color: #f5f5f5;
-			}
 	.uni-combox {
 		font-size: 14px;
 		border: 1px solid #DCDFE6;
@@ -174,7 +161,6 @@
 		// height: 40px;
 		flex-direction: row;
 		align-items: center;
-		// background-color: #fff;
 		// border-bottom: solid 1px #DDDDDD;
 	}
 

@@ -76,6 +76,14 @@
     "navigationStyle": "custom"
   }
 }
+    ,
+    {
+  "path": "pages/feedback/feedback",
+  "style": {
+    "navigationBarTitleText": "反馈内容",
+    "enablePullDownRefresh": true
+  }
+}
   ],
   "subPackages": [
     {
