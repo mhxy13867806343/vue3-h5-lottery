@@ -9,7 +9,7 @@ export default {
         { icon: 'chat-o',text: '反馈',url: '/pages/feedback/feedback',type:'click'},
     ],
     shareMenuList:[
-        { name: '复制链接', icon: 'link',url:'123' },
-        { name: '二维码', icon: 'qrcode',url:'123' },
+        { name: '复制链接', icon: 'link',url:'#',type:0 },
+        { name: '二维码', icon: 'qrcode',url:'#',type:1 },
     ]
 }

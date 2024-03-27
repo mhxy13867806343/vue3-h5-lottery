@@ -39,6 +39,7 @@ const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1
 			</view>
 			<uv-cell-group title="功能设置">
 				<uv-cell center title="我的动态" isLink url="/pages/myDynamics/myDynamics"></uv-cell>
+				<uv-cell center title="我的个性签名" isLink url="/pages/signature/signature"></uv-cell>
 			</uv-cell-group>
 		
 		</view>

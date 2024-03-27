@@ -1,6 +1,7 @@
 <script setup>
 import useConnent from '@/hooks/useConnent';
 const { signature, onClickSendSignature } = useConnent();
+
 </script>
 
 <template>
