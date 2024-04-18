@@ -83,7 +83,15 @@
   "path": "pages/feedback/feedback",
   "style": {
     "navigationBarTitleText": "反馈内容",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/userHistory/userHistory",
+  "style": {
+    "navigationBarTitleText": "用户行为操作",
+    "enablePullDownRefresh": false
   }
 }
   ],

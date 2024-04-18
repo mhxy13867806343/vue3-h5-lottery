@@ -38,8 +38,21 @@ const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1
 				<uv-cell :border="false" class="p-text-h4 p-text-h4-align-center" title="昵称" isLink url="/pages/personalinformation/personalinformation"></uv-cell>
 			</view>
 			<uv-cell-group title="功能设置">
-				<uv-cell center title="我的动态" isLink url="/pages/myDynamics/myDynamics"></uv-cell>
-				<uv-cell center title="我的个性签名" isLink url="/pages/signature/signature"></uv-cell>
+				<template #title>
+					<span class="p-fctuin-title">
+						<van-icon name="setting-o" /><span>功能设置</span>
+					</span>
+				</template>
+				<uv-cell center title="我的动态" isLink url="/pages/myDynamics/myDynamics">
+					<template #icon><van-icon name="fire-o" /></template>
+				</uv-cell>
+				<uv-cell center title="我的个性签名" isLink url="/pages/signature/signature">
+					<template #icon><van-icon name="description-o" /></template>
+				</uv-cell>
+				<uv-cell center title="我的历史行为" isLink url="/pages/userHistory/userHistory">
+					<template #icon><van-icon name="browsing-history-o" /></template>
+					
+				</uv-cell>
 			</uv-cell-group>
 		
 		</view>
@@ -53,5 +66,11 @@ const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1
 
 
 <style lang="scss">
-
+.p-fctuin-title{
+	padding: 10rpx 0;
+	font-size: 30rpx;
+	span{
+		padding-left: 10rpx;
+	}
+}
 </style>
