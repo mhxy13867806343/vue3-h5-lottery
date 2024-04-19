@@ -94,6 +94,46 @@
     "enablePullDownRefresh": false
   }
 }
+    ,
+    {
+  "path": "pages/order/order",
+  "style": {
+    "navigationBarTitleText": "休闲",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/delivery/delivery",
+  "style": {
+    "navigationBarTitleText": "快递查询",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/rubbish/rubbish",
+  "style": {
+    "navigationBarTitleText": "垃圾分类",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/baike/baike",
+  "style": {
+    "navigationBarTitleText": "百科全书",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/kfclunar/kfclunar",
+  "style": {
+    "navigationBarTitleText": "星期四和日历",
+    "enablePullDownRefresh": false
+  }
+}
   ],
   "subPackages": [
     {
@@ -118,6 +158,11 @@
       "iconPath": "static/tabbar/home.png",
       "selectedIconPath": "static/tabbar/home1.png",
       "text": "首页"
+    }, {
+      "pagePath": "pages/order/order",
+      "iconPath": "static/tabbar/order.png",
+      "selectedIconPath": "static/tabbar/order1.png",
+      "text": "其他"
     }, {
       "pagePath": "pages/personalCenter/personalCenter",
       "iconPath": "static/tabbar/user3.png",
