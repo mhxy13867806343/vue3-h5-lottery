@@ -1,5 +1,8 @@
 <script setup>
 const active = ref(0)
+const onMmVideoClick = (index) => {
+	active.value = index
+}
 </script>
 <template>
 	<view class="app-sweeper">
@@ -10,9 +13,11 @@ const active = ref(0)
 		</swiper>
 		<view class="abs-bottom">
 			<view class="abs-bottom-item">
-				<view class="abs-bottom-item-title">普通美女视频</view>
-				<view class="abs-bottom-item-title">快手美女视频</view>
-				<view class="abs-bottom-item-title">抖音美女视频</view>
+				<view class="abs-bottom-item-title"
+				      :class="{'active': active === 0}"
+				      @click="onMmVideoClick(0)">普通美女视频</view>
+				<view 	      :class="{'active': active ===1}" class="abs-bottom-item-title"  @click="onMmVideoClick(1)">快手美女视频</view>
+				<view 	      :class="{'active': active === 2}" class="abs-bottom-item-title"  @click="onMmVideoClick(2)">抖音美女视频</view>
 			</view>
 		</view>
 	</view>
@@ -28,10 +33,15 @@ const active = ref(0)
   width: 100vw;
 }
 .abs-bottom-item-title{
-	color: #fff;
+	color: #000;
 	font-size: 30rpx;
 	display: inline-block;
-	width: 100%;
+	width: 33.33%;
 	padding: 20rpx 0;
+	text-align: center;
+	&.active{
+		color: #fff;
+		font-size: 36rpx;
+	}
 }
 </style>

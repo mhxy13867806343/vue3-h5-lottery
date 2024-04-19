@@ -124,11 +124,17 @@ uni-swiper{
   .abs-bottom{
     position: fixed;
     right: 0;
-    bottom: 0;
+    top: 0;
     display: block;
+    z-index: 9999;
+    width: 100%;
     .abs-bottom-item{
       text-align: right;
-      padding-right:30rpx;
+      display: flex;
+      width: auto;
+      color: rgb(255, 255, 255);
+      background-color: rgb(245, 108, 108);
+      border-color: rgb(245, 108, 108);
     }
   }
 }
