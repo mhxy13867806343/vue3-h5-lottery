@@ -118,3 +118,17 @@ uni-swiper{
   justify-content: center;
   align-items: center;
 }
+
+.app-sweeper{
+  position: relative;
+  .abs-bottom{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: block;
+    .abs-bottom-item{
+      text-align: right;
+      padding-right:30rpx;
+    }
+  }
+}

@@ -134,6 +134,72 @@
     "enablePullDownRefresh": false
   }
 }
+    ,
+    {
+  "path": "pages/wordcloud/wordcloud",
+  "style": {
+    "navigationBarTitleText": "文本内容生成",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/word/word",
+  "style": {
+    "navigationBarTitleText": "文本敏感词检测",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/picture/picture",
+  "style": {
+    "navigationBarTitleText": "图片搜索",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "custom" ,// 隐藏系统导航栏
+    "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+  }
+}
+    ,
+    {
+  "path": "pages/gasolinePriceQuery/gasolinePriceQuery",
+  "style": {
+    "navigationBarTitleText": "全国油价查询",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/todayhistory/todayhistory",
+  "style": {
+    "navigationBarTitleText": "历史上的今天",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/localUrl/localUrl",
+  "style": {
+    "navigationBarTitleText": "其他",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/findMobile/findMobile",
+  "style": {
+    "navigationBarTitleText": "查询手机号归属地",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/mmvideo/mmvideo",
+  "style": {
+    "navigationBarTitleText": "妹子视频",
+    "enablePullDownRefresh": false
+  }
+}
   ],
   "subPackages": [
     {
