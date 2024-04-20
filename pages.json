@@ -202,6 +202,14 @@
     "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
   }
 }
+    ,
+    {
+  "path": "pages/weather15/weather15",
+  "style": {
+    "navigationBarTitleText": "未来十五日天气",
+    "enablePullDownRefresh": false
+  }
+}
   ],
   "subPackages": [
     {
