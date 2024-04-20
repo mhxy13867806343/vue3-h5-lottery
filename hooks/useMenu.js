@@ -1,4 +1,5 @@
 import{uniAppGetCurrentPages} from '@/common/uniappTools'
+import{setClipboardData} from '@/common/tools'
 export default (options={})=>{
     const showPopover=ref(false)// 弹窗
     const qRCodeShow=ref(false) // 二维码弹窗
@@ -26,18 +27,7 @@ export default (options={})=>{
         let {route,options,...page}=uniAppGetCurrentPages()
         shareText.value=`${window.location.href}`
         if(item.icon==='link'){
-            uni.setClipboardData({
-                data: shareText.value,
-                success: ()=> {
-                    uni.showToast({
-                        title: '链接已复制,快去分享吧',
-                        icon: 'none'
-                    })
-                },
-                fail: ()=> {
-                    alert('复制失败')
-                }
-            });
+            setClipboardData(shareText.value)
         }if(item.icon==='qrcode'){
             qRCodeShow.value=true
         }

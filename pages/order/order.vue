@@ -4,8 +4,10 @@
 <template>
 	<view>
 		<van-cell-group inset title="功能列表">
+			<van-cell title="正在热门电影" value="正在热门电影"  is-link to="/pages/movieOnInfo/movieOnInfo" center/>
 			<van-cell title="视频搜索" value="视频搜索"  is-link to="/pages/mmvideo/mmvideo" center/>
 			<van-cell title="未来十五日天气" value="未来十五日天气"  is-link to="/pages/weather15/weather15" center/>
+			<van-cell title="短剧搜索" value="短剧搜索"  is-link to="/pages/duanju/duanju" center/>
 		</van-cell-group>
 		<van-cell-group inset title="其他功能">
 			<van-cell title="历史上的今天" value="历史上的今天"  is-link to="/pages/todayhistory/todayhistory" center/>
@@ -18,6 +20,7 @@
 			<van-cell title="垃圾分类" value="垃圾分类"  is-link to="/pages/rubbish/rubbish" center/>
 			<van-cell title="快递查询" value="快递查询"  is-link to="/pages/delivery/delivery" center/>
 			<van-cell title="查询手机号归属地" value="查询手机号归属地"  is-link to="/pages/findMobile/findMobile" center/>
+			<van-cell title="集合列表" value="集合列表"  is-link to="/pages/hotlistall/hotlistall" center/>
 		</van-cell-group>
 	</view>
 </template>

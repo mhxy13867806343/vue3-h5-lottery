@@ -42,6 +42,6 @@
 </style>
 <style lang="scss">
     @import '@/uni_modules/uv-ui-tools/index.scss';
+   @import '@/static/font/iconfont.css';
    
-    
 </style>

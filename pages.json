@@ -210,6 +210,30 @@
     "enablePullDownRefresh": false
   }
 }
+    ,
+    {
+  "path": "pages/duanju/duanju",
+  "style": {
+    "navigationBarTitleText": "短剧搜索",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/movieOnInfo/movieOnInfo",
+  "style": {
+    "navigationBarTitleText": "正在热门电影",
+    "enablePullDownRefresh": false
+  }
+}
+    ,
+    {
+  "path": "pages/hotlistall/hotlistall",
+  "style": {
+    "navigationBarTitleText": "集合列表",
+    "enablePullDownRefresh": false
+  }
+}
   ],
   "subPackages": [
     {
