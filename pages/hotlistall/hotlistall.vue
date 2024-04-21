@@ -1,4 +1,6 @@
 <script setup>
+import useCache from "@/hooks/useCache";
+const {setStorageSync,cacheDataRef}=useCache();
 const data=ref([{
 	name: "微博",
 	subtitle: "热搜榜",
@@ -432,6 +434,13 @@ const data=ref([{
 		}
 	]
 }])
+const goClickDetail=(url, mobilUrl)=>{
+	uni.navigateTo({
+		url: `/pages/localUrl/localUrl?type=hot`
+	})
+	setStorageSync(cacheDataRef.value.hot, mobilUrl)
+
+}
 </script>
 <template>
 	<view class="app-container">
@@ -457,7 +466,10 @@ const data=ref([{
 					<view class="hotlist-item-left">  {{ item2.title }}</view>
 					<view class="hotlist-item-right">
 						<view class="iconfont icon-liulanliang"></view>
-						<text>{{ item2.hot }}</text></view>
+						<text>{{ item2.hot }}</text>
+						<view class="hotlist-item-detail" @click="goClickDetail(item2.url, item2.mobilUrl)">详情</view>
+					</view>
+					
 				</view>
 			</view>
 		</view>
@@ -524,6 +536,11 @@ const data=ref([{
 				display: flex;
 				uni-text{
 					padding-left: 10rpx;
+				}
+				.hotlist-item-detail{
+					display: inline-flex;
+					flex:1;
+					justify-content: flex-end;
 				}
 			}
 		}

@@ -1,4 +1,7 @@
 <script setup>
+import useCache from "@/hooks/useCache";
+const {getStorageSync,cacheDataRef}=useCache();
+
 const data=ref({})
 onLoad((options)=>{
 	if(options.type=='history'){
@@ -11,11 +14,23 @@ onLoad((options)=>{
 	}if(options.type==='movie'){
 		data.value.history=`https://m.maoyan.com/asgard/movie/${options.moveId}`
 	
+	}if(options.type==='hot'){
+		data.value.history=getStorageSync(cacheDataRef.value.hot)
+	
 	}
 })
 </script>
 <template>
-	<web-view :src="data.history" :style="{height: '100vh'}"></web-view>
+	<view>
+		<view v-if="data.history">
+			<web-view :src="data.history" :style="{height: '100vh'}"></web-view>
+		</view>
+		<view>
+			<uv-empty mode="data" />
+		
+		</view>
+	</view>
+	
 </template>
 
 
