@@ -21,6 +21,7 @@
 			<van-cell title="快递查询" value="快递查询"  is-link to="/pages/delivery/delivery" center/>
 			<van-cell title="查询手机号归属地" value="查询手机号归属地"  is-link to="/pages/findMobile/findMobile" center/>
 			<van-cell title="集合列表" value="集合列表"  is-link to="/pages/hotlistall/hotlistall" center/>
+			<van-cell title="摸鱼" value="摸鱼"  is-link to="/pages/touchTheFish/touchTheFish" center/>
 		</van-cell-group>
 	</view>
 </template>

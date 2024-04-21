@@ -1,3 +1,7 @@
+export const cacheDataRef={
+    hot:'hot-list'
+}
+
 export const setClipboardData=(data)=>{
     uni.setClipboardData({
         data,
@@ -11,4 +15,26 @@ export const setClipboardData=(data)=>{
             alert('复制失败')
         }
     });
+}
+export const setStorageSync=(key,value)=>{
+    try {
+        uni.setStorageSync(key,value);
+    } catch (e) {
+        // error
+    }
+}
+export const getStorageSync=(key)=>{
+    try {
+        return uni.getStorageSync(key);
+    } catch (e) {
+        // error
+    }
+}
+
+export const removeStorageSync=(key)=>{
+    try {
+        uni.removeStorageSync(key);
+    } catch (e) {
+        // error
+    }
 }

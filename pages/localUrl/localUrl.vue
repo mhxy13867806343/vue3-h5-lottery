@@ -1,6 +1,5 @@
 <script setup>
-import useCache from "@/hooks/useCache";
-const {getStorageSync,cacheDataRef}=useCache();
+import {getStorageSync,cacheDataRef} from '@/common/tools'
 
 const data=ref({})
 onLoad((options)=>{
@@ -15,7 +14,7 @@ onLoad((options)=>{
 		data.value.history=`https://m.maoyan.com/asgard/movie/${options.moveId}`
 	
 	}if(options.type==='hot'){
-		data.value.history=getStorageSync(cacheDataRef.value.hot)
+		data.value.history=getStorageSync(cacheDataRef.hot)
 	
 	}
 })

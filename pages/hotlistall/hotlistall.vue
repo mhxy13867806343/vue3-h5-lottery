@@ -1,6 +1,5 @@
 <script setup>
-import useCache from "@/hooks/useCache";
-const {setStorageSync,cacheDataRef}=useCache();
+import {setStorageSync,cacheDataRef} from '@/common/tools'
 const data=ref([{
 	name: "微博",
 	subtitle: "热搜榜",
@@ -438,7 +437,7 @@ const goClickDetail=(url, mobilUrl)=>{
 	uni.navigateTo({
 		url: `/pages/localUrl/localUrl?type=hot`
 	})
-	setStorageSync(cacheDataRef.value.hot, mobilUrl)
+	setStorageSync(cacheDataRef.hot, mobilUrl)
 
 }
 </script>

@@ -234,6 +234,14 @@
     "enablePullDownRefresh": false
   }
 }
+    ,
+    {
+  "path": "pages/touchTheFish/touchTheFish",
+  "style": {
+    "navigationBarTitleText": "摸鱼",
+    "enablePullDownRefresh": false
+  }
+}
   ],
   "subPackages": [
     {
