@@ -8,6 +8,7 @@ export default ()=>{
     const searchName = ref('')
     const apiDataRef =ref({})
     const systemInfo = ref({})
+    const stausData = ref({})
     const isLoading = ref(false)//
     onMounted(() => {
         nextTick(() => {
@@ -44,6 +45,7 @@ export default ()=>{
     }
     const onCreatedDeliveryData=async ()=>{
         list.value=[]
+        stausData.value={}
         isLoading.value=true
         getDelivery(searchName.value).then(res=>{
             
@@ -57,7 +59,9 @@ export default ()=>{
                     isLoading.value=false
                     return
                 }
+                stausData.value=result
                 list.value=result.info
+                
                 if(!list.value.length){
                     isLoading.value=false
                     return
@@ -75,6 +79,7 @@ export default ()=>{
     }
     return {
         list,
+        stausData,
         searchName,
         apiDataRef,
         systemInfo,

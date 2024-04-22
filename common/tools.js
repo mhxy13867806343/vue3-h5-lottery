@@ -1,5 +1,6 @@
 export const cacheDataRef={
-    hot:'hot-list'
+    hot:'url-hot-list',
+    thotlist:'url-thot-list',
 }
 
 export const setClipboardData=(data)=>{

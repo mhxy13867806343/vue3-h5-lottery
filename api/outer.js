@@ -38,3 +38,9 @@ export const getRubbish=(name)=>{
         }
     })
 }
+export const getHotlist=(data)=>{
+    return request( {
+        url : '/v1/h5/outer/hotlist',
+        data
+    })
+}

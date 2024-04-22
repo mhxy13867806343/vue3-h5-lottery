@@ -1,9 +1,14 @@
 <script setup>
 import useOuters   from "@/hooks/useOuters"
-const {onCreatedDeliveryData,list,searchName,isLoading}=useOuters()
+const {onCreatedDeliveryData,list,searchName,isLoading, stausData}=useOuters()
 onMounted(()=>{
 	isLoading.value=true
 })
+function formatPhoneNumbers(phone) {
+	if (!phone) return "";
+	const phoneRegex = /(\d{3}-\d{8}|\d{4}-\d{7,8}|\d{11})/g; // 匹配电话号码格式
+	return phone.replace(phoneRegex, '<a href="tel:$1" style="color: #ae2626; text-decoration: underline;">$1</a>');
+}
 </script>
 <template>
 	<view>
@@ -21,10 +26,13 @@ onMounted(()=>{
 			</van-field>
 		</van-cell-group>
 		<view class="list-data">
+			<uv-text type="error" class="item-data"   :text="'订单状态:'+(stausData.status||'')"></uv-text>
 			<template v-for="(item,index) in list">
+				
 				<view class="item-data" :key="index">
+					
 					<view class="time">{{item.time}}</view>
-					<view class="context ">{{item.context}}</view>
+					<view class="context " v-html="formatPhoneNumbers(item.context)"></view>
 				</view>
 			</template>
 		</view>

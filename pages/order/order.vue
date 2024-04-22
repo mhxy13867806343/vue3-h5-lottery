@@ -1,5 +1,17 @@
 
 <script setup>
+
+import { getHotlist } from "@/api/outer";
+import { cacheDataRef , setStorageSync,getStorageSync } from "@/common/tools";
+onMounted(() => {
+	if(!getStorageSync ( cacheDataRef.thotlist ).length){
+		getHotlist().then(res => {
+			setStorageSync(cacheDataRef.thotlist, res||[])
+		}).catch(err => {
+		})
+	}
+	
+})
 </script>
 <template>
 	<view>
