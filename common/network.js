@@ -1,4 +1,5 @@
 import ".env"
+import { Toast } from "vant";
 const request = (options={}) => {
 	if (!options.url) {
 		uni.showToast( {
@@ -7,6 +8,11 @@ const request = (options={}) => {
 		})
 		return
 	}
+	Toast.loading({
+		message: '正在加载中...',
+		forbidClick: true,
+		loadingType: 'spinner',
+	});
 	// 处理 apiUrl
 	return new Promise((resolve, reject) => {
 		
@@ -21,6 +27,7 @@ const request = (options={}) => {
 			timeout: options.timeout || 60000,
 			dataType: options.dataType || 'json',
 			success: res=>{
+				Toast.clear()
 				const datas=res.data.data
 				const {code,result,message}=datas
 		
@@ -39,6 +46,7 @@ const request = (options={}) => {
 						title:err.message,
 						icon:'none'
 				})
+				Toast.clear()
 			},
 		});
 	})

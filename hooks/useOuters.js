@@ -1,7 +1,10 @@
-import {getToTchTheFish as getToTchTheFishApi} from '@/api/outer'
-import { Toast } from 'vant';
+import {
+    getToTchTheFish as getToTchTheFishApi ,
+    getHotlistall as getHotlistallApi ,
+    getDelivery
+} from '@/api/outer'
 export default ()=>{
-
+    const list=ref([])
     const searchName = ref('')
     const apiDataRef =ref({})
     const systemInfo = ref({})
@@ -24,33 +27,61 @@ export default ()=>{
     }
     //摸鱼方式
     const getToTchTheFish=(type='moyu')=>{
-        Toast.loading({
-            message: '正在加载中...',
-            forbidClick: true,
-            loadingType: 'spinner',
-        });
         getToTchTheFishApi(type).then(res=>{
             apiDataRef.value = res
             isLoading.value = false
-            Toast.clear()
         }).catch(e=>{
-            console.log(e,5555)
-            uni.showToast({
-                title: e.message,
-                icon: 'none'
-                
-            })
             isLoading.value = true
-            Toast.clear()
         })
        
     }
+    //热门榜单
+    const getHotlistall=data=>{
+        getHotlistallApi(data).then(res=>{
+            list.value = res.data ||[]
+        }).catch(e=>{
+        })
+    }
+    const onCreatedDeliveryData=async ()=>{
+        list.value=[]
+        isLoading.value=true
+        getDelivery(searchName.value).then(res=>{
+            
+            const {code,result}=res
+            if(result){
+                if(code!==200){
+                    uni.showToast({
+                        title:res.message,
+                        icon:"none"
+                    })
+                    isLoading.value=false
+                    return
+                }
+                list.value=result.info
+                if(!list.value.length){
+                    isLoading.value=false
+                    return
+                }
+                isLoading.value=true
+            }else{
+                isLoading.value=false
+                list.value=[]
+            }
+            
+            
+        }).catch(err=>{
+        
+        })
+    }
     return {
+        list,
         searchName,
         apiDataRef,
         systemInfo,
         isLoading,
+        getHotlistall,
         getToTchTheFish,
-        onClickSearch
+        onClickSearch,
+        onCreatedDeliveryData
     }
 }
