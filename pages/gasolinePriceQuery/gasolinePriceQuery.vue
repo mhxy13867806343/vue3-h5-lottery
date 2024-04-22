@@ -250,6 +250,11 @@ const list=ref([
 		UpdateTime: "2024-4-19 14:30:01"
 	}
 ])
+import useOuters from "@/hooks/useOuters"
+const {getGasolinePriceQuery}=useOuters()
+onMounted(async () => {
+	await getGasolinePriceQuery()
+})
 </script>
 <template>
 	<view>

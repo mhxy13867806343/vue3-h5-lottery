@@ -44,3 +44,9 @@ export const getHotlist=(data)=>{
         data
     })
 }
+export const getGasolinePriceQuery=(data)=>{
+    return request( {
+        url : '/v1/h5/outer/gasolinePriceQuery',
+        data
+    })
+}

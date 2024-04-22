@@ -1,7 +1,7 @@
 import {
     getToTchTheFish as getToTchTheFishApi ,
     getHotlistall as getHotlistallApi ,
-    getDelivery
+    getDelivery as getDeliveryApi,getGasolinePriceQuery as getGasolinePriceQueryApi
 } from '@/api/outer'
 export default ()=>{
     const list=ref([])
@@ -26,6 +26,13 @@ export default ()=>{
         
         getToTchTheFish(val)
     }
+    const getGasolinePriceQuery=data=>{
+        getGasolinePriceQueryApi(data).then(res=>{
+        
+        }).catch(e=>{
+            console.log(e)
+        })
+    }
     //摸鱼方式
     const getToTchTheFish=(type='moyu')=>{
         getToTchTheFishApi(type).then(res=>{
@@ -47,7 +54,7 @@ export default ()=>{
         list.value=[]
         stausData.value={}
         isLoading.value=true
-        getDelivery(searchName.value).then(res=>{
+        getDeliveryApi(searchName.value).then(res=>{
             
             const {code,result}=res
             if(result){
@@ -87,6 +94,7 @@ export default ()=>{
         getHotlistall,
         getToTchTheFish,
         onClickSearch,
-        onCreatedDeliveryData
+        onCreatedDeliveryData,
+        getGasolinePriceQuery
     }
 }
