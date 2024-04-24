@@ -1,7 +1,9 @@
 import {
     getToTchTheFish as getToTchTheFishApi ,
     getHotlistall as getHotlistallApi ,
-    getDelivery as getDeliveryApi,getGasolinePriceQuery as getGasolinePriceQueryApi
+    getDelivery as getDeliveryApi,getGasolinePriceQuery as getGasolinePriceQueryApi,
+    getRubbish as getRubbishApi,
+    getBaike as getBaikeApi
 } from '@/api/outer'
 export default ()=>{
     const list=ref([])
@@ -28,6 +30,9 @@ export default ()=>{
     }
     const getGasolinePriceQuery=data=>{
         getGasolinePriceQueryApi(data).then(res=>{
+            if(res?.data?.list){
+               list.value= res.data.list
+            }
         
         }).catch(e=>{
             console.log(e)
@@ -84,6 +89,15 @@ export default ()=>{
         
         })
     }
+    const getRubbish=data=> {
+        list.value = []
+        getRubbishApi ( data ).then ( res => {
+            const {result,code}=res
+            list.value =result || []
+        } ).catch ( e => {
+            console.log ( e )
+        } )
+    }
     return {
         list,
         stausData,
@@ -91,6 +105,7 @@ export default ()=>{
         apiDataRef,
         systemInfo,
         isLoading,
+        getRubbish,
         getHotlistall,
         getToTchTheFish,
         onClickSearch,

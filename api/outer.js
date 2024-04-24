@@ -46,7 +46,16 @@ export const getHotlist=(data)=>{
 }
 export const getGasolinePriceQuery=(data)=>{
     return request( {
-        url : '/v1/h5/outer/gasolinePriceQuery',
-        data
+        url : '/v1/h5/outer/youjia',
+        data,
+        method:'post'
+    })
+}
+export const getBaike=(msg)=>{
+    return request( {
+        url : '/v1/h5/outer/baike',
+        data:{
+            msg
+        }
     })
 }

@@ -1,17 +1,18 @@
 <script setup>
-const name=ref("")
-const list=ref([])
+import useOuters from "@/hooks/useOuters";
+const {getRubbish,list,searchName}=useOuters()
 </script>
 <template>
 	<view>
 		<van-cell-group inset>
-			<van-field  centerrequired v-model="name" label="垃圾分类" placeholder="请输入垃圾分类" clearable  >
+			<van-field  centerrequired v-model="searchName" label="垃圾分类" placeholder="请输入垃圾分类" clearable  >
 				<template #button>
-					<van-button  :type="!name.length?'default':'primary'"
+					<van-button  :type="!searchName.length?'default':'primary'"
 					             :autoplay="2000"
 					             :touchable="false"
+					             @click="getRubbish(searchName)"
 					             :show-indicators="false" block
-					             :disabled="!name.length"  hairline size="normal"
+					             :disabled="!searchName.length"  hairline size="normal"
 					>查询</van-button>
 				</template>
 			</van-field>
