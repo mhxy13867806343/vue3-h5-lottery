@@ -1,9 +1,10 @@
 import {
     getToTchTheFish as getToTchTheFishApi ,
     getHotlistall as getHotlistallApi ,
-    getDelivery as getDeliveryApi,getGasolinePriceQuery as getGasolinePriceQueryApi,
-    getRubbish as getRubbishApi,
-    getBaike as getBaikeApi
+    getDelivery as getDeliveryApi , getGasolinePriceQuery as getGasolinePriceQueryApi ,
+    getRubbish as getRubbishApi ,
+    getBBaikeaike as getBaikeApi ,
+    getPicture as getPictureApi , getPicture
 } from '@/api/outer'
 export default ()=>{
     const list=ref([])
@@ -11,7 +12,10 @@ export default ()=>{
     const apiDataRef =ref({})
     const systemInfo = ref({})
     const stausData = ref({})
+    const contentText=ref('')
     const isLoading = ref(false)//
+    const inClickSearch = ref(false)
+    const currentIndex=ref(1)
     onMounted(() => {
         nextTick(() => {
             uni.getSystemInfo({
@@ -37,6 +41,14 @@ export default ()=>{
         }).catch(e=>{
             console.log(e)
         })
+    }
+    const getPicture=page=> {
+        getPictureApi ( page ).then ( res => {
+            const {data}=res
+            list.value =data || []
+        } ).catch ( e => {
+        
+        } )
     }
     //摸鱼方式
     const getToTchTheFish=(type='moyu')=>{
@@ -98,18 +110,52 @@ export default ()=>{
             console.log ( e )
         } )
     }
+    const getBaike=data=> {
+        inClickSearch.value=false
+        getBaikeApi ( data ).then ( res => {
+            const {data,code}=res
+            if(code===200){
+                inClickSearch.value=true
+                contentText.value =`<view><img src="${data.img_url}"  /></view>${data.text }`
+                stausData.value=data.home
+            }else{
+                inClickSearch.value=false
+                contentText.value=""
+                stausData.value=""
+               uni.showToast({
+                   title:`${data.status}`,
+                   icon:"none"
+               })
+               
+            }
+        }).catch ( e => {
+            searchName.value=''
+            inClickSearch.value=false
+        } )
+    }
+    const onClearSearch=()=>{
+        inClickSearch.value=false
+        contentText.value=""
+        stausData.value=""
+    }
     return {
         list,
+        contentText,
         stausData,
         searchName,
         apiDataRef,
         systemInfo,
         isLoading,
+        inClickSearch,
+        onClearSearch,
         getRubbish,
         getHotlistall,
         getToTchTheFish,
         onClickSearch,
         onCreatedDeliveryData,
-        getGasolinePriceQuery
+        getGasolinePriceQuery,
+        getBaike,
+        getPicture,
+        currentIndex,
     }
 }

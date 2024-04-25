@@ -1,14 +1,15 @@
 export const cacheDataRef={
     hot:'url-hot-list',
     thotlist:'url-thot-list',
+    baike:'url-baike',
 }
 
-export const setClipboardData=(data)=>{
+export const setClipboardData=(data,msg="链接已复制,快去分享吧")=>{
     uni.setClipboardData({
         data,
         success: ()=> {
             uni.showToast({
-                title: '链接已复制,快去分享吧',
+                title: msg,
                 icon: 'none'
             })
         },

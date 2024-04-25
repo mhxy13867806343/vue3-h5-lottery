@@ -1,64 +1,13 @@
 <script setup>
-import { computed } from "@vue/composition-api";
-const previewShow=ref(false)
+import { setClipboardData } from "@/common/tools";
+import  qpreviewImage from '@/uni_modules/q-previewImage/components/q-previewImage/q-previewImage.vue'
+import useOuters from "@/hooks/useOuters";
+const {getPicture,list,currentIndex}=useOuters()
+onMounted(()=>{
+	getPicture()
+})
+const previewImage=ref(null)
 const code=ref("")
-const list=ref([
-	{
-		"postid": "",
-		"desc": "大家好，这是一周Cosplay秀时刻，每周小编都会为大家推荐一些非常不错的Cosplay作品，本次推荐的作品包括：《仙境传说》、《魔兽世界》等等。",
-		"pvnum": "",
-		"createdate": "2016-12-20 14:13:42",
-		"scover": "http://img3.cache.netease.com/photo/0031/2016-12-20/s_C8O24HEM6LRK0031.jpg",
-		"setname": "一周精品Cosplay盘点：第76期",
-		"cover": "http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HEM6LRK0031.jpg",
-		"pics": [
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HEM6LRK0031.jpg",
-			"http://img4.cache.netease.com/photo/0031/2016-12-20/C8O24HOF6LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg",
-		],
-		"clientcover1": "",
-		"replynum": "0",
-		"topicname": "",
-		"setid": "91297",
-		"seturl": "http://ent.163.com/game/photoview/6LRK0031/91297.html",
-		"datetime": "2016-12-20 14:17:21",
-		"clientcover": "",
-		"imgsum": "20",
-		"tcover": "http://img4.cache.netease.com/photo/0031/2016-12-20/t_C8O24HEM6LRK0031.jpg"
-	},
-	{
-		"postid": "",
-		"desc": "大家好，这是一周Cosplay秀时刻，每周小编都会为大家推荐一些非常不错的Cosplay作品，本次推荐的作品包括：《仙境传说》、《魔兽世界》等等。",
-		"pvnum": "",
-		"createdate": "2016-12-20 14:13:42",
-		"scover": "http://img3.cache.netease.com/photo/0031/2016-12-20/s_C8O24HEM6LRK0031.jpg",
-		"setname": "一周精品Cosplay盘点：第76期",
-		"cover": "http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HEM6LRK0031.jpg",
-		"pics": [
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HEM6LRK0031.jpg",
-			"http://img4.cache.netease.com/photo/0031/2016-12-20/C8O24HOF6LRK0031.jpg",
-			"http://img3.cache.netease.com/photo/0031/2016-12-20/C8O24HJ46LRK0031.jpg"
-		],
-		"clientcover1": "",
-		"replynum": "0",
-		"topicname": "",
-		"setid": "91297",
-		"seturl": "http://ent.163.com/game/photoview/6LRK0031/91297.html",
-		"datetime": "2016-12-20 14:17:21",
-		"clientcover": "",
-		"imgsum": "20",
-		"tcover": "http://img4.cache.netease.com/photo/0031/2016-12-20/t_C8O24HEM6LRK0031.jpg"
-	},
-])
 const imagesList=ref([])
 const imagesIndex=ref(0)
 const sysPicPreview=ref({})
@@ -70,32 +19,32 @@ const formattedComputedList = computed(() => {
 	}));
 });
 const onClickPicPreview = (pics, index,urls) => {
-	previewShow.value = true;
 	imagesIndex.value = index;
 	imagesList.value = pics;
+	previewImage.value.open(urls,index);
 	
 }
-const onSlideChange = (e) => {
-	imagesIndex.value = e;
+const getChangedPicture = (index) => {
+	list.value=[]
+	getPicture(index)
 }
 </script>
 <template>
 	<view>
-		<van-cell-group inset>
-			<van-field
-				type="number"
-				centerrequired v-model="code" label="分页码" placeholder="请输入分页码" clearable  >
-				<template #button>
-					<van-button  :type="!code.length?'default':'primary'"
-					             
-					             :autoplay="2000"
-					             :touchable="false"
-					             :show-indicators="false" block
-					             :disabled="!code.length"  hairline size="normal"
-					>查询</van-button>
-				</template>
-			</van-field>
-		</van-cell-group>
+		<van-sticky>
+		<van-pagination v-model="currentIndex"
+		                @change="getChangedPicture"
+		:total-items="2000"
+		>
+			<template #prev-text>
+				<van-icon name="arrow-left" />
+			</template>
+			<template #next-text>
+				<van-icon name="arrow" />
+			</template>
+			<template #page="{ text }">{{ text }}</template>
+		</van-pagination>
+		</van-sticky>
 		<view class="list-data">
 			<template v-for="(item,index) in formattedComputedList" :keys="index">
 				<view class="item-box">
@@ -106,9 +55,9 @@ const onSlideChange = (e) => {
 							</template>
 						</uv-image>
 					</view>
-					<view class="item-data">
+					<view class="item-data" @click="setClipboardData(`[复制->${item.setname}-${item.postid}]-${item.seturl}`,'复制成功')">
 						<view class="time">{{ item.setname }}-{{ item.createdate }}</view>
-						<view class="context">{{ item.desc }}</view>
+						<view class="context" >{{ item.desc }}</view>
 					</view>
 					
 				</view>
@@ -124,9 +73,8 @@ const onSlideChange = (e) => {
 			</template>
 		</view>
 		<van-divider />
-		<van-image-preview v-model="previewShow" :images="imagesList" @change="onSlideChange">
-			<template v-slot:index>{{ imagesIndex+1 }}/{{ imagesList.length}}</template>
-		</van-image-preview>
+		<qpreviewImage ref="previewImage" :urls="imagesList"
+		></qpreviewImage>
 	</view>
 </template>
 

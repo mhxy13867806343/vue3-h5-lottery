@@ -51,11 +51,19 @@ export const getGasolinePriceQuery=(data)=>{
         method:'post'
     })
 }
-export const getBaike=(msg)=>{
+export const getBBaikeaike=(msg)=>{
     return request( {
         url : '/v1/h5/outer/baike',
         data:{
             msg
+        }
+    })
+}
+export const getPicture=(page=1)=>{
+    return request( {
+        url : '/v1/h5/outer/picture',
+        data:{
+            page
         }
     })
 }
