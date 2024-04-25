@@ -67,3 +67,51 @@ export const getPicture=(page=1)=>{
         }
     })
 }
+export const getKfc=(page=1)=>{
+    return request( {
+        url : '/v1/h5/outer/kfc',
+        data:{
+            page
+        }
+    })
+}
+export const getHoliday=(year=new Date().getFullYear())=>{
+    return request( {
+        url : '/v1/h5/outer/holiday',
+        data:{
+            year
+        }
+    })
+}
+export const getWordcloud=(word)=>{
+    return request( {
+        url : '/v1/h5/outer/wordcloud',
+        data:{
+            word
+        }
+    })
+}
+export const getCity=(word)=>{
+    return request( {
+        url : '/v1/h5/outer/city',
+        data:{
+            word
+        }
+    })
+}
+export const getHotcity=(number=12)=>{
+    return request( {
+        url : '/v1/h5/outer/hotcity',
+        data:{
+            number
+        }
+    })
+}
+export const getCityname=(cityname)=>{
+    return request( {
+        url : '/v1/h5/outer/cityname',
+        data:{
+            cityname
+        }
+    })
+}

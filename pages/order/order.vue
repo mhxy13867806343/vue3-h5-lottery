@@ -1,7 +1,7 @@
 
 <script setup>
 
-import { getHotlist } from "@/api/outer";
+import { getHotlist ,getCity,getHotcity} from "@/api/outer";
 import { cacheDataRef , setStorageSync,getStorageSync } from "@/common/tools";
 onMounted(() => {
 	if(!getStorageSync ( cacheDataRef.thotlist ).length){
@@ -10,7 +10,18 @@ onMounted(() => {
 		}).catch(err => {
 		})
 	}
-	
+	if(!getStorageSync ( cacheDataRef.city ).length){
+		getCity().then(res => {
+			setStorageSync(cacheDataRef.city, res||[])
+		}).catch(err => {
+		})
+	}
+	if(!getStorageSync ( cacheDataRef.hotcity ).length){
+		getHotcity().then(res => {
+			setStorageSync(cacheDataRef.hotcity, res.topCityList ||[])
+		}).catch(err => {
+		})
+	}
 })
 </script>
 <template>

@@ -1,7 +1,11 @@
+import { getHotcity } from "@/api/outer";
+
 export const cacheDataRef={
-    hot:'url-hot-list',
-    thotlist:'url-thot-list',
-    baike:'url-baike',
+    hot:'h5-sb-url-hot-list',
+    thotlist:'h5-sb-url-thot-list',
+    baike:'h5-sb-url-baike',
+    city:'h5-sb-url-city',
+    hotcity:'h5-sb-url-hot-city',
 }
 
 export const setClipboardData=(data,msg="链接已复制,快去分享吧")=>{
