@@ -38,9 +38,6 @@ const cityComputed=computed(()=>getStorageSync(cacheDataRef.hotcity))
 // ECharts 配置
 
 const chart=ref(null)
-onMounted(() => {
-	updateChart(cityComputed.value[0].name)
-})
 const updateChart=(cityname)=>{
 	let myChart = null
 	nextTick(async () => {
@@ -117,6 +114,12 @@ const onCityClick=(item,index)=>{
 	name.value=item.name
 	updateChart(item.name)
 }
+const init=()=>{
+	setTimeout(()=>{
+		activeIndex.value=0
+		updateChart(cityComputed.value[0].name)
+	},1000)
+}
 </script>
 <template>
 	<view class="app-container">
@@ -148,7 +151,7 @@ const onCityClick=(item,index)=>{
 			</van-cell-group>
 			<view class="app-weather15-title">{{ name }}15天天气预报</view>
 			<view style="width:100%; height:750rpx">
-				<l-echart ref="chartRef" @finished="updateChart"></l-echart></view>
+				<l-echart ref="chartRef" @finished="init"></l-echart></view>
 		
 		</view>
 	</view>

@@ -115,3 +115,26 @@ export const getCityname=(cityname)=>{
         }
     })
 }
+export const getZzxjj=()=>{
+    return request( {
+        url : '/v1/h5/outer/zzxjj',
+        data:{
+        }
+    })
+}
+
+export const getDouyinMM=()=>{
+    return request( {
+        url : '/v1/h5/outer/douyinMM',
+        data:{
+        }
+    })
+}
+
+export const getGirlMM=()=>{
+    return request( {
+        url : '/v1/h5/outer/girlMM',
+        data:{
+        }
+    })
+}
