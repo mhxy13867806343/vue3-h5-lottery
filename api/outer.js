@@ -129,3 +129,9 @@ export const getGirlMM = () => {
         data: {}
     })
 }
+export const getGithubSearch = (data) => {
+    return request({
+        url: '/v1/h5/outer/search/q',
+        data
+    })
+}
