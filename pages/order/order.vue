@@ -1,15 +1,9 @@
 
 <script setup>
 
-import { getHotlist ,getCity,getHotcity} from "@/api/outer";
+import { getCity,getHotcity} from "@/api/outer";
 import { cacheDataRef , setStorageSync,getStorageSync } from "@/common/tools";
 onMounted(() => {
-	if(!getStorageSync ( cacheDataRef.thotlist ).length){
-		getHotlist().then(res => {
-			setStorageSync(cacheDataRef.thotlist, res||[])
-		}).catch(err => {
-		})
-	}
 	if(!getStorageSync ( cacheDataRef.city ).length){
 		getCity().then(res => {
 			setStorageSync(cacheDataRef.city, res||[])
@@ -27,12 +21,12 @@ onMounted(() => {
 <template>
 	<view>
 		<van-cell-group inset title="功能列表">
-			<van-cell title="正在热门电影" value="正在热门电影"  is-link to="/pages/movieOnInfo/movieOnInfo" center/>
-			<van-cell title="视频搜索" value="视频搜索"  is-link to="/pages/mmvideo/mmvideo" center/>
+<!--			<van-cell title="正在热门电影" value="正在热门电影"  is-link to="/pages/movieOnInfo/movieOnInfo" center/>-->
+<!--			<van-cell title="视频搜索" value="视频搜索"  is-link to="/pages/mmvideo/mmvideo" center/>-->
 			<van-cell title="未来十五日天气" value="未来十五日天气"  is-link to="/pages/weather15/weather15" center/>
-			<van-cell title="短剧搜索" value="短剧搜索"  is-link to="/pages/duanju/duanju" center/>
+<!--			<van-cell title="短剧搜索" value="短剧搜索"  is-link to="/pages/duanju/duanju" center/>-->
 		</van-cell-group>
-		<van-cell-group inset title="其他功能">
+		<van-cell-group inset title="其他功能" v-if="0">
 			<van-cell title="历史上的今天" value="历史上的今天"  is-link to="/pages/todayhistory/todayhistory" center/>
 			<van-cell title="全国油价查询" value="全国油价查询"  is-link to="/pages/gasolinePriceQuery/gasolinePriceQuery" center/>
 			<van-cell title="图片搜索" value="图片搜索"  is-link to="/pages/picture/picture" center/>

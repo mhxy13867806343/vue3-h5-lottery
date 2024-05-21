@@ -5,243 +5,217 @@
       "path": "pages/home/home",
       "style": {
         "navigationBarTitleText": "首页",
-        "navigationStyle": "custom" ,// 隐藏系统导航栏
-        "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+        // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
       }
-    }, {
+    },
+    {
       "path": "pages/login/login",
       "style": {
         "navigationBarTitleText": "登录"
       }
-    },{
-      "path": "pages/personalCenter/personalCenter",
+    },
+    {
+      "path": "pages/registered/registered",
       "style": {
-        "navigationStyle": "custom" ,// 隐藏系统导航栏
-        "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+        "navigationBarTitleText": "注册",
+        "enablePullDownRefresh": false
       }
     },
     {
-      "path": "pages/personalinformation/personalinformation",
+      "path": "pages/signature/signature",
       "style": {
-        "navigationBarTitleText": "个人信息"
-
+        "navigationBarTitleText": "签名",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/dynamic/dynamic",
+      "style": {
+        "navigationBarTitleText": "动态",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/userUpdate/userUpdate",
+      "style": {
+        "navigationBarTitleText": "修改信息",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/myDynamics/myDynamics",
+      "style": {
+        "navigationBarTitleText": "我的动态",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/detailDynamics/detailDynamics",
+      "style": {
+        "navigationBarTitleText": "动态详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/feedback/feedback",
+      "style": {
+        "navigationBarTitleText": "反馈内容",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/userHistory/userHistory",
+      "style": {
+        "navigationBarTitleText": "用户行为操作",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/order/order",
+      "style": {
+        "navigationBarTitleText": "休闲",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/delivery/delivery",
+      "style": {
+        "navigationBarTitleText": "快递查询",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/rubbish/rubbish",
+      "style": {
+        "navigationBarTitleText": "垃圾分类",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/baike/baike",
+      "style": {
+        "navigationBarTitleText": "百科全书",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/kfclunar/kfclunar",
+      "style": {
+        "navigationBarTitleText": "星期四和日历",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/wordcloud/wordcloud",
+      "style": {
+        "navigationBarTitleText": "文本内容生成",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/word/word",
+      "style": {
+        "navigationBarTitleText": "文本敏感词检测",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/picture/picture",
+      "style": {
+        "navigationBarTitleText": "图片搜索",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+        // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+      }
+    },
+    {
+      "path": "pages/gasolinePriceQuery/gasolinePriceQuery",
+      "style": {
+        "navigationBarTitleText": "全国油价查询",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/todayhistory/todayhistory",
+      "style": {
+        "navigationBarTitleText": "历史上的今天",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/localUrl/localUrl",
+      "style": {
+        "navigationBarTitleText": "其他",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/findMobile/findMobile",
+      "style": {
+        "navigationBarTitleText": "查询手机号归属地",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/mmvideo/mmvideo",
+      "style": {
+        "navigationBarTitleText": "妹子视频",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+        // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+      }
+    },
+    {
+      "path": "pages/weather15/weather15",
+      "style": {
+        "navigationBarTitleText": "未来十五日天气",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/duanju/duanju",
+      "style": {
+        "navigationBarTitleText": "短剧搜索",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/movieOnInfo/movieOnInfo",
+      "style": {
+        "navigationBarTitleText": "正在热门电影",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/hotlistall/hotlistall",
+      "style": {
+        "navigationBarTitleText": "集合列表",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/touchTheFish/touchTheFish",
+      "style": {
+        "navigationBarTitleText": "摸鱼",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/morecity/morecity",
+      "style": {
+        "navigationBarTitleText": "更多城市",
+        "enablePullDownRefresh": false
       }
     }
-
-    ,
-    {
-  "path": "pages/registered/registered",
-  "style": {
-    "navigationBarTitleText": "注册",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/signature/signature",
-  "style": {
-    "navigationBarTitleText": "签名",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/dynamic/dynamic",
-  "style": {
-    "navigationBarTitleText": "动态",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/userUpdate/userUpdate",
-  "style": {
-    "navigationBarTitleText": "修改信息",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/myDynamics/myDynamics",
-  "style": {
-    "navigationBarTitleText": "我的动态",
-    "enablePullDownRefresh": false,
-    "navigationStyle": "custom"
-  }
-}
-    ,
-    {
-  "path": "pages/detailDynamics/detailDynamics",
-  "style": {
-    "navigationBarTitleText": "动态详情",
-    "enablePullDownRefresh": false,
-    "navigationStyle": "custom"
-  }
-}
-    ,
-    {
-  "path": "pages/feedback/feedback",
-  "style": {
-    "navigationBarTitleText": "反馈内容",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/userHistory/userHistory",
-  "style": {
-    "navigationBarTitleText": "用户行为操作",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/order/order",
-  "style": {
-    "navigationBarTitleText": "休闲",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/delivery/delivery",
-  "style": {
-    "navigationBarTitleText": "快递查询",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/rubbish/rubbish",
-  "style": {
-    "navigationBarTitleText": "垃圾分类",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/baike/baike",
-  "style": {
-    "navigationBarTitleText": "百科全书",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/kfclunar/kfclunar",
-  "style": {
-    "navigationBarTitleText": "星期四和日历",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/wordcloud/wordcloud",
-  "style": {
-    "navigationBarTitleText": "文本内容生成",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/word/word",
-  "style": {
-    "navigationBarTitleText": "文本敏感词检测",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/picture/picture",
-  "style": {
-    "navigationBarTitleText": "图片搜索",
-    "enablePullDownRefresh": false,
-    "navigationStyle": "custom" ,// 隐藏系统导航栏
-    "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-  }
-}
-    ,
-    {
-  "path": "pages/gasolinePriceQuery/gasolinePriceQuery",
-  "style": {
-    "navigationBarTitleText": "全国油价查询",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/todayhistory/todayhistory",
-  "style": {
-    "navigationBarTitleText": "历史上的今天",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/localUrl/localUrl",
-  "style": {
-    "navigationBarTitleText": "其他",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/findMobile/findMobile",
-  "style": {
-    "navigationBarTitleText": "查询手机号归属地",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/mmvideo/mmvideo",
-  "style": {
-    "navigationBarTitleText": "妹子视频",
-    "enablePullDownRefresh": false,
-    "navigationStyle": "custom" ,// 隐藏系统导航栏
-    "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-  }
-}
-    ,
-    {
-  "path": "pages/weather15/weather15",
-  "style": {
-    "navigationBarTitleText": "未来十五日天气",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/duanju/duanju",
-  "style": {
-    "navigationBarTitleText": "短剧搜索",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/movieOnInfo/movieOnInfo",
-  "style": {
-    "navigationBarTitleText": "正在热门电影",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/hotlistall/hotlistall",
-  "style": {
-    "navigationBarTitleText": "集合列表",
-    "enablePullDownRefresh": false
-  }
-}
-    ,
-    {
-  "path": "pages/touchTheFish/touchTheFish",
-  "style": {
-    "navigationBarTitleText": "摸鱼",
-    "enablePullDownRefresh": false
-  }
-}
   ],
   "subPackages": [
     {
@@ -261,21 +235,19 @@
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "fontSize": "24rpx",
-    "list": [{
-      "pagePath": "pages/home/home",
-      "iconPath": "static/tabbar/home.png",
-      "selectedIconPath": "static/tabbar/home1.png",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/order/order",
-      "iconPath": "static/tabbar/order.png",
-      "selectedIconPath": "static/tabbar/order1.png",
-      "text": "其他"
-    }, {
-      "pagePath": "pages/personalCenter/personalCenter",
-      "iconPath": "static/tabbar/user3.png",
-      "selectedIconPath": "static/tabbar/user1.png",
-      "text": "个人中心"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "iconPath": "static/tabbar/order.png",
+        "selectedIconPath": "static/tabbar/order1.png",
+        "text": "其他"
+      }
+    ]
   }
 }

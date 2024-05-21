@@ -28,10 +28,11 @@ echarts.use([
 ]);
 const chartRef = ref(null)
 const name=ref('')
+const isExist=ref(false)
 const activeIndex=ref(-1)
 const dataList=ref({})
+const addressName=ref("")
 // 准备数据
-
 
 
 const cityComputed=computed(()=>getStorageSync(cacheDataRef.hotcity))
@@ -40,13 +41,12 @@ const cityComputed=computed(()=>getStorageSync(cacheDataRef.hotcity))
 const chart=ref(null)
 const updateChart=(cityname)=>{
 	let myChart = null
+	isExist.value=false
 	nextTick(async () => {
 		try{
 			const res=await getCityname(cityname)
-			console.log(res,4)
 			dataList.value=res
 			const {forecast}= dataList.value?.data
-			console.log(dataList.value,22,5)
 			const option = {
 				tooltip: {
 					trigger: 'axis',
@@ -100,12 +100,25 @@ const updateChart=(cityname)=>{
 			if(!chartRef.value) return
 			myChart= await chartRef.value.init(echarts)
 			myChart.setOption(option)
+			isExist.value=false
 		}catch ( e ){
 			myChart=null
-			dataList.value={}
+			chartRef.value?.clear()
+			dataList.value={
+				message:'暂无数据'
+			}
+			isExist.value=true
 		}
 	})
 }
+onLoad(opt=>{
+	addressName.value=opt.name
+	if(opt.name){
+		updateChart(opt.name)
+		name.value=opt.name
+	}
+})
+
 watch(dataList.value, () => {
 	updateChart()
 }, { deep: true })
@@ -115,16 +128,25 @@ const onCityClick=(item,index)=>{
 	updateChart(item.name)
 }
 const init=()=>{
-	setTimeout(()=>{
-		activeIndex.value=0
-		updateChart(cityComputed.value[0].name)
-	},1000)
+	if(!addressName.value){
+		setTimeout(()=>{
+			activeIndex.value=0
+			updateChart(cityComputed.value[0].name)
+			name.value=cityComputed.value[0].name
+		},1000)
+	}
+	
+}
+const onClickRouter=()=>{
+	uni.navigateTo({
+		url:'/pages/morecity/morecity'
+	})
 }
 </script>
 <template>
 	<view class="app-container">
 		<view class="app-weather15">
-			<van-notice-bar scrollable :text="dataList&&dataList.message" />
+			<van-notice-bar v-if="dataList&&dataList.message" scrollable :text="dataList&&dataList.message" />
 			
 			<van-cell-group inset>
 				<van-field  centerrequired v-model="name" label="天气城市" placeholder="请输入或选择天气城市" clearable  >
@@ -133,13 +155,14 @@ const init=()=>{
 						             :autoplay="2000"
 						             :touchable="false"
 						             :show-indicators="false" block
+						             @click="updateChart(name)"
 						             :disabled="!name.length"  hairline size="normal"
 						>查询</van-button>
 					</template>
 				</van-field>
 			</van-cell-group>
 			<van-cell-group inset>
-				<van-cell title="热门城市"></van-cell>
+				<van-cell title="热门城市" center></van-cell>
 				<view class="app-container-city">
 					<view v-for="(a,b) in cityComputed" :key="b" class="app-container-item"
 					@click="onCityClick(a,b)"
@@ -148,10 +171,15 @@ const init=()=>{
 						{{ a.name }}
 					</view>
 				</view>
+				<van-cell title="更多城市"  center
+				@click="onClickRouter"
+				></van-cell>
 			</van-cell-group>
 			<view class="app-weather15-title">{{ name }}15天天气预报</view>
-			<view style="width:100%; height:750rpx">
+			<view style="width:100%; height:750rpx" v-if="!isExist">
 				<l-echart ref="chartRef" @finished="init"></l-echart></view>
+			<uv-empty mode="list"  v-else></uv-empty>
+		
 		
 		</view>
 	</view>
