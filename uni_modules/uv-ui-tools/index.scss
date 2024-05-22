@@ -5,3 +5,35 @@
 /* #ifndef APP-NVUE */
 @import "./libs/css/vue.scss";
 /* #endif */
+
+.search-data {
+  background-color: #ffffff; /* 使用更简洁的颜色声明 */
+  border: 1px solid #d0d7de; /* 合并边框样式 */
+  border-radius: 12rpx;
+  padding: 32rpx 20rpx 8rpx; /* 合并内边距设置 */
+}
+
+.search-h1-40rpx{
+  font-size: 40rpx;
+}
+.search-h1-32{
+  font-size: 32rpx;
+}
+.search-uv-flex{
+  display: flex;
+}
+.search-h1-26{
+    font-size: 26rpx;
+}
+
+.search-h1-24{
+  font-size: 24rpx;
+}
+.flex-wrap{
+
+  flex-wrap: wrap;
+
+}
+uni-modal {
+  z-index: 10000;
+}

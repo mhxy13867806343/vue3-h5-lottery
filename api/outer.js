@@ -135,3 +135,17 @@ export const getGithubSearch = (data) => {
         data
     })
 }
+export const getGithubSearchMore = (data) => {
+    return request({
+        url: '/v1/h5/languages/search',
+        data
+    })
+}
+
+export const getGithubSearchUrlMore = (data) => {
+    return request({
+        url: '/v1/h5/outer/search/github',
+        data,
+        method:'get'
+    })
+}

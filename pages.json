@@ -215,6 +215,16 @@
         "navigationBarTitleText": "更多城市",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/githubSearchMore/githubSearchMore",
+      "style": {
+        "navigationBarTitleText": "更多github资源",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [

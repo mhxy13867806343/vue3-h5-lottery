@@ -10,6 +10,7 @@ onMounted(()=>{
 })
 const onClickSearch=(q)=>{
 	dataList.value={}
+	search.value=q
 	getGithubSearch({
 		q,
 		type: "repositories",
@@ -49,6 +50,11 @@ const replaceEm=text=>{
 		}
 	})
 }
+const onClickGitMore=()=>{
+	uni.navigateTo({
+		url:"/pages/githubSearchMore/githubSearchMore"
+	})
+}
 </script>
 <template>
 	<view class="app-container">
@@ -61,6 +67,10 @@ const replaceEm=text=>{
 					<div @click="onClickSearch(search)">搜索</div>
 				</template>
 			</van-search>
+			<histry @click="(item,index)=>onClickSearch(item)"/>
+			<van-cell-group inset>
+				<van-cell is-link center value="更多github资源" @click.stop="onClickGitMore"></van-cell>
+			</van-cell-group>
 		</van-sticky>
 		<view class="search-data app-container" v-if="dataList&&dataList.topics">
 			<view class="search-topics">
@@ -160,12 +170,7 @@ const replaceEm=text=>{
 	</view>
 </template>
 <style scoped lang="scss">
-.search-data {
-	background-color: #ffffff; /* 使用更简洁的颜色声明 */
-	border: 1px solid #d0d7de; /* 合并边框样式 */
-	border-radius: 12rpx;
-	padding: 32rpx 20rpx 8rpx; /* 合并内边距设置 */
-}
+
 .repository-item,.search-data{
 	box-shadow: 0 0 12rpx 1px hsla(0, 0%, 64.7%, .2);
 	margin-bottom: 20rpx;
@@ -251,5 +256,8 @@ const replaceEm=text=>{
 .language {
 	font-size: 28rpx;
 	color: #007aff;
+}
+::v-deep .van-sticky--fixed{
+	background: #fff;
 }
 </style>

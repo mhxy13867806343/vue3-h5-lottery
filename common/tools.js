@@ -1,4 +1,4 @@
-import { getHotcity } from "@/api/outer";
+
 
 export const cacheDataRef={
     hot:'h5-sb-url-hot-list',
@@ -6,6 +6,9 @@ export const cacheDataRef={
     baike:'h5-sb-url-baike',
     city:'h5-sb-url-city',
     hotcity:'h5-sb-url-hot-city',
+    histry:'h5-sb-url-histry',
+    token:'h5-sb-url-token',
+    user:'h5-sb-url-user',
 }
 
 export const setClipboardData=(data,msg="链接已复制,快去分享吧")=>{
