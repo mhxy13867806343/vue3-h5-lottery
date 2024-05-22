@@ -22,6 +22,8 @@ const getInitData=()=>{
 		data.value.history=getStorageSync(cacheDataRef.hot)
 	}if(options.type==='searchName'){
 		data.value.history=decodeURIComponent(options.url)
+	} if(options.type==='github'){
+		data.value.history=`https://github.com/${options.url}`
 	}
 }
 </script>
