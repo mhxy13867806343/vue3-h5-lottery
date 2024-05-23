@@ -40,6 +40,8 @@ const iscategory=ref(false)//是否显示分类
 const isperiod=ref(false)//是否显示时间
 const islang=ref(false)//是否显示语言
 const search=ref("")//搜索
+const offset=ref(0)//偏移量
+const limit=ref(50)//数量
 onMounted(()=>{
 	init()
 	
@@ -57,18 +59,28 @@ const init=()=>{
 }
 const getGithubSearchUrlMoreInit=()=>{
 	list.value=[]
+	getGithubSearchUrlMoreAjax1()
+}
+const getGithubSearchUrlMoreAjax1=()=>{
 	getGithubSearchUrlMoreAjax({
 		period:periodValue.value,
-		offset:0,
+		offset:offset.value,
 		lang:langLable.value,
 		category:categoryValue.value,
-		limit:50,
-
+		limit:limit.value,
 	})
+}
+const onClickOffset=()=>{
+	if(offset.value===0){
+		offset.value=0*limit.value+limit.value
+	}else{
+		offset.value=offset.value+limit.value
+	}
+	getGithubSearchUrlMoreAjax1()
 }
 const getGithubSearchUrlMoreAjax=(data)=>{
 	getGithubSearchUrlMore(data).then(res=>{
-		list.value= res ||[]
+		list.value=[...list.value,...res] ||[]
 	}).catch(e=>{
 	
 	})
@@ -91,6 +103,7 @@ const onPeriodClick=(item,index)=>{
 	periodValue.value=item.category
 	periodIndex.value=index
 	isperiod.value=false
+	offset.value=0
 	getGithubSearchUrlMoreInit()
 }
 // 时间
@@ -99,6 +112,7 @@ const onCategoryClick=(item,index)=>{
 	categoryIndex.value=index
 	categoryValue.value=item.category
 	iscategory.value=false
+	offset.value=0
 	getGithubSearchUrlMoreInit()
 }
 // 语言
@@ -107,6 +121,7 @@ const onLangClick=(item,index)=>{
 	langIndex.value=index
 	langValue.value=item.id
 	islang.value=false
+	offset.value=0
 	store.dispatch("setHistryList",item.text)
 	getGithubSearchUrlMoreInit()
 }
@@ -139,8 +154,8 @@ function formatNumber(num) {
 		</van-cell-group>
 		</van-sticky>
 		<scroll-view class="scroll-view_H " scroll-y>
-			<view v-for="(item,index) in list" :key="item.id" class="scroll-view-item_H search-data">
-				<view class="search-h1-40rpx" >{{ item.reponame}}
+			<view v-for="(item,index) in list" :key="`${index}-${item.description}`" class="scroll-view-item_H search-data">
+				<view class="search-h1-40rpx" >{{ index+1}}.{{ item.reponame}}
 				<uv-image v-if="item&&item.owner&&item.owner.avatar" :src="item&&item.owner&&item.owner.avatar"
 				width="40" fade  duration="450" observeLazyLoad
 				          height="40"
@@ -165,7 +180,7 @@ function formatNumber(num) {
 				</view>
 			</view>
 			<uv-empty v-if="!list.length" text="没有这个记录哦!!!"></uv-empty>
-		
+			<uv-button type="primary" text="下一页" @click="onClickOffset"></uv-button>
 		</scroll-view>
 		<van-action-sheet v-model="iscategory" title="按分类">
 			<van-cell-group inset>
