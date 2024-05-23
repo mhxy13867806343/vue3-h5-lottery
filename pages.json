@@ -225,6 +225,16 @@
         // 隐藏系统导航栏
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/v2ex/v2ex",
+      "style": {
+        "navigationBarTitleText": "v2ex",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [

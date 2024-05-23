@@ -8,6 +8,16 @@ onMounted(()=>{
 	console.log(dataList.value,)
 	// onClickSearch("python")
 })
+const cellRouterList=[
+	{
+		url:'/pages/githubSearchMore/githubSearchMore?k=1',
+		value:'更多github资源'
+	},
+	{
+		url:'/pages/v2ex/v2ex?k=2',
+		value:'更多v2ex资源'
+	},
+]
 const onClickSearch=(q)=>{
 	dataList.value={}
 	search.value=q
@@ -50,9 +60,9 @@ const replaceEm=text=>{
 		}
 	})
 }
-const onClickGitMore=()=>{
+const onClickGitMore=(url)=>{
 	uni.navigateTo({
-		url:"/pages/githubSearchMore/githubSearchMore"
+		url
 	})
 }
 </script>
@@ -69,7 +79,9 @@ const onClickGitMore=()=>{
 			</van-search>
 			<histry @click="(item,index)=>onClickSearch(item)"/>
 			<van-cell-group inset>
-				<van-cell is-link center value="更多github资源" @click.stop="onClickGitMore"></van-cell>
+				<van-cell is-link center :value="item.value"
+				          v-for="(item,index) in cellRouterList"  :key="index"
+				          @click.stop="onClickGitMore(item.url)"></van-cell>
 			</van-cell-group>
 		</van-sticky>
 		<view class="search-data app-container" v-if="dataList&&dataList.topics">

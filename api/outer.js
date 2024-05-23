@@ -149,3 +149,10 @@ export const getGithubSearchUrlMore = (data) => {
         method:'get'
     })
 }
+export const getV2exMore = (data) => {
+    return request({
+        url: '/v1/h5/outer/v2ex',
+        data,
+        method:'get'
+    })
+}

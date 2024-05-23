@@ -1,13 +1,16 @@
 <script setup>
+import useListMore from "@/hooks/useListMore";
 import store from "@/store";
 import { getGithubSearchMore , getGithubSearchUrlMore } from "@/api/outer";
-const list=ref([])
+import { formatNumber } from "@/common/tools";
+
 const categoryLable=ref("")//热门
 const categoryValue=ref("")//热门
 const periodLable=ref("")//今日
 const periodValue=ref("")
 const langLable=ref("")//语言
 const langValue=ref("")
+
 const categorySelector=ref([
 	{
 		label:'热门',
@@ -40,8 +43,7 @@ const iscategory=ref(false)//是否显示分类
 const isperiod=ref(false)//是否显示时间
 const islang=ref(false)//是否显示语言
 const search=ref("")//搜索
-const offset=ref(0)//偏移量
-const limit=ref(50)//数量
+const  {isLenMore,list,offset,limit,getGithubSearchUrlMoreCbAjax,onListReset,onOffsetReset,onClickOffset : onClickOffset1}=useListMore()
 onMounted(()=>{
 	init()
 	
@@ -58,7 +60,7 @@ const init=()=>{
 	
 }
 const getGithubSearchUrlMoreInit=()=>{
-	list.value=[]
+	onListReset()
 	getGithubSearchUrlMoreAjax1()
 }
 const getGithubSearchUrlMoreAjax1=()=>{
@@ -71,19 +73,10 @@ const getGithubSearchUrlMoreAjax1=()=>{
 	})
 }
 const onClickOffset=()=>{
-	if(offset.value===0){
-		offset.value=0*limit.value+limit.value
-	}else{
-		offset.value=offset.value+limit.value
-	}
-	getGithubSearchUrlMoreAjax1()
+	onClickOffset1(getGithubSearchUrlMoreAjax1)
 }
 const getGithubSearchUrlMoreAjax=(data)=>{
-	getGithubSearchUrlMore(data).then(res=>{
-		list.value=[...list.value,...res] ||[]
-	}).catch(e=>{
-	
-	})
+	getGithubSearchUrlMoreCbAjax(getGithubSearchUrlMore,data)
 }
 const getGithubSearchMoreQuqery=(q="")=>{
 	search.value=q
@@ -103,7 +96,7 @@ const onPeriodClick=(item,index)=>{
 	periodValue.value=item.category
 	periodIndex.value=index
 	isperiod.value=false
-	offset.value=0
+	onOffsetReset()
 	getGithubSearchUrlMoreInit()
 }
 // 时间
@@ -112,7 +105,7 @@ const onCategoryClick=(item,index)=>{
 	categoryIndex.value=index
 	categoryValue.value=item.category
 	iscategory.value=false
-	offset.value=0
+	onOffsetReset()
 	getGithubSearchUrlMoreInit()
 }
 // 语言
@@ -121,7 +114,7 @@ const onLangClick=(item,index)=>{
 	langIndex.value=index
 	langValue.value=item.id
 	islang.value=false
-	offset.value=0
+	onOffsetReset()
 	store.dispatch("setHistryList",item.text)
 	getGithubSearchUrlMoreInit()
 }
@@ -134,15 +127,7 @@ const searchStyleComputed=computed(()=>{
 		overflowY:'scroll'
 	}
 })
-function formatNumber(num) {
-	if (num < 1000) {
-		return num.toString(); // 小于1000直接返回原数值
-	} else if (num < 10000000) {
-		return (num / 1000).toFixed(1) + 'k'; // 从1000到9999999显示为"k"单位
-	} else {
-		return (num / 10000000).toFixed(1) + 'w'; // 大于等于1000万显示为"w"单位
-	}
-}
+
 </script>
 <template>
 	<view class="app-container">
@@ -155,7 +140,7 @@ function formatNumber(num) {
 		</van-sticky>
 		<scroll-view class="scroll-view_H " scroll-y>
 			<view v-for="(item,index) in list" :key="`${index}-${item.description}`" class="scroll-view-item_H search-data">
-				<view class="search-h1-40rpx" >{{ index+1}}.{{ item.reponame}}
+				<view class="search-h1-40rpx" >{{ item.reponame}}
 				<uv-image v-if="item&&item.owner&&item.owner.avatar" :src="item&&item.owner&&item.owner.avatar"
 				width="40" fade  duration="450" observeLazyLoad
 				          height="40"
@@ -180,7 +165,10 @@ function formatNumber(num) {
 				</view>
 			</view>
 			<uv-empty v-if="!list.length" text="没有这个记录哦!!!"></uv-empty>
-			<uv-button type="primary" text="下一页" @click="onClickOffset"></uv-button>
+			<uv-button type="primary" :text="!isLenMore?'下一页':'没有更多了哦!'" @click="onClickOffset"
+			           :disabled="isLenMore"
+			v-if="list.length"
+			></uv-button>
 		</scroll-view>
 		<van-action-sheet v-model="iscategory" title="按分类">
 			<van-cell-group inset>
