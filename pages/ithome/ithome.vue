@@ -2,11 +2,11 @@
 import { formatDayjsTime  } from "@/common/tools";
 import useListMore from "@/hooks/useListMore";
 import {getIthomeMore} from '@/api/outer'
-const  {isLenMore,list,offset,limit,getGithubSearchUrlMoreCbAjax,onListReset,onOffsetReset,onClickOffset : onClickOffset1,
+const  {list,
 	loading,
 	finished,
 	onSearchLoad,
-	getListMore
+	getListMore,offset,limit
 }=useListMore()
 onMounted(()=>{
 	getListMore(getIthomeMore)
@@ -20,14 +20,33 @@ onMounted(()=>{
 		finished-text="没有更多了"
 		@load="onSearchLoad(getIthomeMore)"
 	>
-		<uni-section title=""  v-for="(item,index) in list" :key="index">
-			<uni-card is-shadow  :extra="formatDayjsTime(item&&item.date&&item.date.iso)">
-				<text class="uni-body">
-					{{ item.title}}
-				</text>
-				
-			</uni-card>
-		</uni-section>
+		<view  v-for="(item,index) in list" :key="index">
+			<uni-section title="" >
+				<uni-card is-shadow
+				          :title="item.title"
+				          :extra="formatDayjsTime(item&&item.date&&item.date.iso)">
+					<uv-link :href="item.url" :text="item.title" under-line></uv-link>
+					<view class="flex-wrap search-uv-flex">
+						<view class="count">
+							<text class="iconfont icon-liulan"></text>{{ item.view}}
+						</view>
+						<view  class="count">
+							<text class="iconfont icon-pinglun"></text>{{ item.comment}}
+						</view>
+						<view  class="count">
+							<text class="iconfont icon-icon"></text>{{ item.hot}}
+						</view>
+						<view  class="count">
+							<text class="iconfont "
+							      :class="[item.like>9?'icon-xihuan':'icon-xingxing']"
+							></text>{{ item.like}}
+						</view>
+					</view>
+				</uni-card>
+			
+			</uni-section>
+		</view>
+		
 	</van-list>
 </template>
 
@@ -35,5 +54,10 @@ onMounted(()=>{
 
 <style scoped
        lang="scss">
-
+.count{
+	padding: 20rpx;
+	.iconfont{
+		margin-right: 10rpx;
+	}
+}
 </style>

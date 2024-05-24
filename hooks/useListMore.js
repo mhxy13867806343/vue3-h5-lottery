@@ -50,6 +50,7 @@ export default ()=>{
     }
     const getListMore=(cb)=>{
         loading.value=true
+      
         cb({
             limit:limit.value,
             offset:offset.value
@@ -59,7 +60,7 @@ export default ()=>{
             }
             list.value=[...list.value,...res] ||[]
             loading.value=false
-            if(list.value.length>=100){
+            if(list.value.length>=50){
                 offset.value=offset.value+limit.value
             }
         }).catch(e=>{
