@@ -163,3 +163,10 @@ export const getIthomeMore = (data) => {
         method:'get'
     })
 }
+export const getHotApiMore = (type="baiduhot") => {
+    return request({
+        url: `/v1/h5/outer/hotApi?type=${type}`,
+        data:{},
+        method:'get'
+    })
+}

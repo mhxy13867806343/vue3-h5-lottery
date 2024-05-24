@@ -21,6 +21,10 @@ const cellRouterList=[
 	{
 		url:'/pages/ithome/ithome',
 		value:'更多it之家资源'
+	},
+	{
+		url:'/pages/hot/hot'
+		,value:'更多热点资源'
 	}
 ]
 const onClickSearch=(q)=>{

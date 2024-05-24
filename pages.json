@@ -245,6 +245,16 @@
         // 隐藏系统导航栏
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/hot/hot",
+      "style": {
+        "navigationBarTitleText": "热点",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [
