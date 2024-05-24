@@ -4,6 +4,7 @@ import { setClipboardData } from "@/common/tools";
 const search=ref('')
 const currentPage=ref(0)
 const dataList=ref( {})
+const offset=ref(1)
 onMounted(()=>{
 	console.log(dataList.value,)
 	// onClickSearch("python")
@@ -17,6 +18,10 @@ const cellRouterList=[
 		url:'/pages/v2ex/v2ex?k=2',
 		value:'更多v2ex资源'
 	},
+	{
+		url:'/pages/ithome/ithome',
+		value:'更多it之家资源'
+	}
 ]
 const onClickSearch=(q)=>{
 	dataList.value={}
@@ -24,10 +29,9 @@ const onClickSearch=(q)=>{
 	getGithubSearch({
 		q,
 		type: "repositories",
-		p:1
+		p:offset.value
 	}).then(res=>{
 		dataList.value=res ||{}
-		console.log(dataList.value,2)
 	})
 }
 const replaceUrl=text=>{
@@ -64,6 +68,10 @@ const onClickGitMore=(url)=>{
 	uni.navigateTo({
 		url
 	})
+}
+const onPageChange=(page)=>{
+	offset.value=page
+	onClickSearch(search.value)
 }
 </script>
 <template>
@@ -170,7 +178,9 @@ const onClickGitMore=(url)=>{
 			</view>
 		</view>
 		<van-empty description="搜索一下吧" v-else></van-empty>
-		<van-pagination v-if="dataList&&dataList.page_count>0" v-model="currentPage" :total-items="dataList&&dataList.page_count" :show-page-size="5">
+		<van-pagination
+			@change="onPageChange"
+			v-if="dataList&&dataList.page_count>0" v-model="currentPage" :total-items="dataList&&dataList.page_count" :show-page-size="5">
 			<template #prev-text>
 				<van-icon name="arrow-left" />
 			</template>

@@ -6,6 +6,8 @@ export default ()=>{
     const list=ref([])
     const isLen=ref(false)
     const isLenMore=ref(false)
+    const loading=ref(false)
+    const finished=ref(false)
     const onClickOffset=(cb)=>{
         if(offset.value===0){
             offset.value=0*limit.value+limit.value
@@ -38,15 +40,45 @@ export default ()=>{
         isLenMore.value=false
         isLen.value=false
     }
+    const onSearchLoad=(cb)=>{
+        if(!list.value.length){
+            loading.value=false
+            return
+        }
+        getListMore(cb)
+        
+    }
+    const getListMore=(cb)=>{
+        loading.value=true
+        cb({
+            limit:limit.value,
+            offset:offset.value
+        }).then(res=>{
+            if(!res.length){
+                finished.value=true
+            }
+            list.value=[...list.value,...res] ||[]
+            loading.value=false
+            if(list.value.length>=100){
+                offset.value=offset.value+limit.value
+            }
+        }).catch(e=>{
+            loading.value=false
+        })
+    }
     return {
         offset,
         limit,
         list,
+        loading,
+        finished,
+        onSearchLoad,
         onClickOffset,
         isLen,
         isLenMore,
         onListReset,
         onOffsetReset,
+        getListMore,
         getGithubSearchUrlMoreCbAjax
     }
 }

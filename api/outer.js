@@ -156,3 +156,10 @@ export const getV2exMore = (data) => {
         method:'get'
     })
 }
+export const getIthomeMore = (data) => {
+    return request({
+        url: '/v1/h5/outer/ithome',
+        data,
+        method:'get'
+    })
+}

@@ -1,5 +1,5 @@
 <script setup>
-import { formatDayjsTime , formatNumber } from "@/common/tools";
+import { formatDayjsTime  } from "@/common/tools";
 import useListMore from "@/hooks/useListMore";
 const  {isLenMore,list,offset,limit,getGithubSearchUrlMoreCbAjax,onListReset,onOffsetReset,onClickOffset : onClickOffset1}=useListMore()
 import {getV2exMore} from '@/api/outer'
@@ -18,6 +18,8 @@ const getV2exMore1=(data)=>{
 const onClickOffset=()=>{
 	onClickOffset1(init)
 }
+
+
 </script>
 <template>
 	<scroll-view class="scroll-view_H " scroll-y>
@@ -25,7 +27,8 @@ const onClickOffset=()=>{
 			<view class="search-h1-40rpx" >{{ item.title}}
 			</view>
 			<view class="search-uv-flex">
-				<view class="search-h1-32">{{ formatDayjsTime(item&&item.date&&item.date.iso)}}</view>
+				<view class="search-h1-32">{{ formatDayjsTime(item&&item.date&&item.date.iso)}}
+				</view>
 				<view class="search-h1-32"> <uv-link :href="item.url" text="打开此页面"/></view>
 			</view>
 			<view class="search-uv-flex" v-if="item.img.length">
