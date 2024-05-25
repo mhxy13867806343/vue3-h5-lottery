@@ -255,6 +255,43 @@
         // 隐藏系统导航栏
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/feedback/feedback",
+      "style": {
+        "navigationBarTitleText": "反馈内容",
+        "enablePullDownRefresh": false
+      }
+    }
+  ,
+    {
+      "path": "pages/personalCenter/personalCenter",
+      "style": {
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+        // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+      }
+    },
+    {
+      "path": "pages/registered/registered",
+      "style": {
+        "navigationBarTitleText": "注册",
+        "enablePullDownRefresh": false
+      }
+    }
+  ,
+    { "path": "pages/registered/registered",
+    "style": {
+      "navigationBarTitleText": "注册",
+      "enablePullDownRefresh": false
+    }
+  },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
     }
   ],
   "subPackages": [
@@ -287,6 +324,12 @@
         "iconPath": "static/tabbar/order.png",
         "selectedIconPath": "static/tabbar/order1.png",
         "text": "其他"
+      },
+      {
+        "pagePath": "pages/personalCenter/personalCenter",
+        "iconPath": "static/tabbar/user3.png",
+        "selectedIconPath": "static/tabbar/user1.png",
+        "text": "个人中心"
       }
     ]
   }

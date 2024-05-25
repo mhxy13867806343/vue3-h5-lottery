@@ -45,7 +45,7 @@ const onChangeTabs=index=>{
 				
 				</uni-section>
 			</view>
-			<uv-empty v-if="!tabList&&tabList[active].list&&tabList[active].list.length" :text="`暂无${tabList[active].title}相关热点信息`"></uv-empty>
+			<uv-empty v-if="!tabList[active].list" :text="`暂无${tabList[active].title}相关热点信息`"></uv-empty>
 		
 		</van-tab>
 	</van-tabs>
