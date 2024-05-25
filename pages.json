@@ -262,8 +262,7 @@
         "navigationBarTitleText": "反馈内容",
         "enablePullDownRefresh": false
       }
-    }
-  ,
+    },
     {
       "path": "pages/personalCenter/personalCenter",
       "style": {
@@ -279,18 +278,25 @@
         "navigationBarTitleText": "注册",
         "enablePullDownRefresh": false
       }
-    }
-  ,
-    { "path": "pages/registered/registered",
-    "style": {
-      "navigationBarTitleText": "注册",
-      "enablePullDownRefresh": false
-    }
-  },
+    },
+    {
+      "path": "pages/registered/registered",
+      "style": {
+        "navigationBarTitleText": "注册",
+        "enablePullDownRefresh": false
+      }
+    },
     {
       "path": "pages/login/login",
       "style": {
         "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/author/author",
+      "style": {
+        "navigationBarTitleText": "作者介绍",
+        "enablePullDownRefresh": false
       }
     }
   ],

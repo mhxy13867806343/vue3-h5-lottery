@@ -170,3 +170,10 @@ export const getHotApiMore = (type="baiduhot") => {
         method:'get'
     })
 }
+export const getAuthorinfo = () => {
+    return request({
+        url: `/v1/authorinfo`,
+        data:{},
+        method:'get'
+    })
+}

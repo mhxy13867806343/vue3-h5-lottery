@@ -13,6 +13,9 @@ import '@/common/date-format.js'
 Vue.use(VueCompositionAPI)
 Vue.use(uvUI);
 Vue.prototype.$store = store
+Vue.prototype.$processImg =(img)=>{
+    return `${process.uniEnv.BASE_API}/${img}`
+}
 Vue.component('Mtabbar', Mtabbar)
 Vue.component('Histry', Histry)
 // #ifndef VUE3

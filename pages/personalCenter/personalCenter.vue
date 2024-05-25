@@ -66,12 +66,15 @@ const onClickLogin=()=>{
 			</uv-cell-group>
 		
 		</view>
-		<view v-else class="login-button"
-		
-		@click="onClickLogin">
+		<view v-else class="app-container login-button"
+		      @click="onClickLogin">
 			<text class="login-button-text">去登录</text>
 		</view>
-	
+		<view class="app-container app-author">
+			<uv-cell center title="作者介绍"
+			         isLink url="/pages/author/author"
+			></uv-cell>
+		</view>
 	</view>
 
 
@@ -135,5 +138,10 @@ const onClickLogin=()=>{
 		transform: translateX(0);
 		min-width: 0rpx;
 	}
+}
+.app-author{
+	position: fixed;
+	bottom: 5%;
+	width: 100%;
 }
 </style>
