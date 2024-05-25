@@ -6,7 +6,6 @@ const activeNames=ref("1")
 onMounted(()=>{
 	getAuthorinfo().then(res => {
 		data.value = res;
-		console.log(res);
 	});
 })
 
