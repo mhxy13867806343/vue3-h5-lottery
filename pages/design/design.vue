@@ -150,7 +150,7 @@ const imgComputed=(array=[])=>{
 		limit:limit,
 	})"
 			            :loading="loading" type="info" :loading-text="loading?'加载中...':''"
-			            v-if="list.length">获取下一页数据({{(list.length/limit)+1 }})</van-button>
+			            v-if="list.length">获取下一页数据</van-button>
 		</view>
 	</view>
 </template>

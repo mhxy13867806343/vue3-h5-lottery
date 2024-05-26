@@ -81,24 +81,8 @@ export default ()=>{
         })
     }
     const getJoinOffsetNext=(fun,d={})=>{
-        joinOffsetLimitCount()
         getListMore(fun,d)
-        uni.getSystemInfo({
-            success: res=>{
-                let clientHeight=res.screenHeight||0
-                if(refDta.value.length){
-                    refDta.value.map(item=>{
-                        clientHeight+=item.$el.clientHeight
-                    })
-                    uni.pageScrollTo({
-                        scrollTop:clientHeight,
-                        duration: 1000
-                    });
-                }
-               // clientHeight
-               
-            }
-        })
+       
        
     }
     return {
