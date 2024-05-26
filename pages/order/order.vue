@@ -23,6 +23,7 @@ onMounted(() => {
 		<van-cell-group inset title="功能列表">
 <!--			<van-cell title="正在热门电影" value="正在热门电影"  is-link to="/pages/movieOnInfo/movieOnInfo" center/>-->
 <!--			<van-cell title="视频搜索" value="视频搜索"  is-link to="/pages/mmvideo/mmvideo" center/>-->
+			<van-cell title="设计" value="设计"  is-link to="/pages/design/design" center/>
 			<van-cell title="未来十五日天气" value="未来十五日天气"  is-link to="/pages/weather15/weather15" center/>
 <!--			<van-cell title="短剧搜索" value="短剧搜索"  is-link to="/pages/duanju/duanju" center/>-->
 		</van-cell-group>

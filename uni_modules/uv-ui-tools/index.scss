@@ -35,6 +35,33 @@
 .justify-content-center{
   justify-content: center;
 }
+.align-items-center{
+  align-items: center;
+}
 uni-modal {
   z-index: 10000;
+}
+.status-btn-fixed{
+  position: fixed;
+}
+.status-btn-bottom{
+  bottom: 0;
+}
+.status-btn-left{
+  left: 0;
+}
+.status-btn-right{
+  right: 0;
+}
+.status-btn-top{
+  top: 0;
+}
+.status-btn-width{
+ width: 100%;
+}
+.status-btn-width-09{
+  width: 90%;
+}
+.a-link{
+  padding: 20rpx 0;
 }

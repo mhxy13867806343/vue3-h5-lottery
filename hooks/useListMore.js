@@ -8,14 +8,20 @@ export default ()=>{
     const isLenMore=ref(false)
     const loading=ref(false)
     const finished=ref(false)
-    const onClickOffset=(cb)=>{
+    const refDta=ref(null)
+    const joinOffsetLimitCount=()=>{
         if(offset.value===0){
             offset.value=0*limit.value+limit.value
         }else{
             offset.value=offset.value+limit.value
         }
+    }
+    const onClickOffset=(cb,data={})=>{
+        joinOffsetLimitCount()
         if(!isLen.value){
-            cb()
+            cb({
+                ...data
+            })
             isLenMore.value=false
         }else{
             isLenMore.value=true
@@ -27,7 +33,7 @@ export default ()=>{
     }
     const getGithubSearchUrlMoreCbAjax=(cb,data)=>{
         cb(data).then(res=>{
-            list.value=[...list.value,...res] ||[]
+            getResCopy(res)
            if(!res.length){
                isLen.value=true
            }
@@ -35,8 +41,14 @@ export default ()=>{
         
         })
     }
-    const onOffsetReset=()=>{
+    const getResCopy=(res)=>{
+        list.value=[...list.value,...res] ||[]
+    }
+    const offsetReset=()=>{
         offset.value=0
+    }
+    const onOffsetReset=()=>{
+        offsetReset()
         isLenMore.value=false
         isLen.value=false
     }
@@ -48,17 +60,18 @@ export default ()=>{
         getListMore(cb)
         
     }
-    const getListMore=(cb)=>{
+    const getListMore=(cb,data={})=>{
         loading.value=true
       
         cb({
             limit:limit.value,
-            offset:offset.value
+            offset:offset.value,
+            ...data
         }).then(res=>{
             if(!res.length){
                 finished.value=true
             }
-            list.value=[...list.value,...res] ||[]
+            getResCopy(res)
             loading.value=false
             if(list.value.length>=50){
                 offset.value=offset.value+limit.value
@@ -66,6 +79,27 @@ export default ()=>{
         }).catch(e=>{
             loading.value=false
         })
+    }
+    const getJoinOffsetNext=(fun,d={})=>{
+        joinOffsetLimitCount()
+        getListMore(fun,d)
+        uni.getSystemInfo({
+            success: res=>{
+                let clientHeight=res.screenHeight||0
+                if(refDta.value.length){
+                    refDta.value.map(item=>{
+                        clientHeight+=item.$el.clientHeight
+                    })
+                    uni.pageScrollTo({
+                        scrollTop:clientHeight,
+                        duration: 1000
+                    });
+                }
+               // clientHeight
+               
+            }
+        })
+       
     }
     return {
         offset,
@@ -80,6 +114,9 @@ export default ()=>{
         onListReset,
         onOffsetReset,
         getListMore,
-        getGithubSearchUrlMoreCbAjax
+        getGithubSearchUrlMoreCbAjax,
+        offsetReset,
+        getJoinOffsetNext,
+        refDta,
     }
 }

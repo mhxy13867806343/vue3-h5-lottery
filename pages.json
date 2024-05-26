@@ -298,6 +298,16 @@
         "navigationBarTitleText": "作者介绍",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/design/design",
+      "style": {
+        "navigationBarTitleText": "设计",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [

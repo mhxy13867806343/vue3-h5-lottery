@@ -177,3 +177,10 @@ export const getAuthorinfo = () => {
         method:'get'
     })
 }
+export const getDesign = (data) => {
+    return request({
+        url: `/v1/h5/outer/design`,
+        data,
+        method:'get'
+    })
+}
