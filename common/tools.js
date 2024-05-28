@@ -9,6 +9,8 @@ export const cacheDataRef={
     histry:'h5-sb-url-histry',
     token:'h5-sb-url-token',
     user:'h5-sb-url-user',
+    category:'h5-sb-url-category-ai',
+
 }
 
 export const setClipboardData=(data,msg="链接已复制,快去分享吧")=>{

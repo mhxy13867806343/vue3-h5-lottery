@@ -1,7 +1,7 @@
 
 <script setup>
 
-import { getCity,getHotcity} from "@/api/outer";
+import { getCategory , getCity , getHotcity , } from "@/api/outer";
 import { cacheDataRef , setStorageSync,getStorageSync } from "@/common/tools";
 onMounted(() => {
 	if(!getStorageSync ( cacheDataRef.city ).length){
@@ -16,10 +16,19 @@ onMounted(() => {
 		}).catch(err => {
 		})
 	}
+	if(!getStorageSync ( cacheDataRef.category ).length){
+		getCategory().then(res => {
+			setStorageSync(cacheDataRef.category, res ||[])
+		}).catch(err => {
+		})
+	}
 })
 </script>
 <template>
 	<view>
+		<van-cell-group inset title="ai工具集">
+			<van-cell is-link center title="ai工具集" value="ai工具集" to="/pages/aitools/aitools"></van-cell>
+		</van-cell-group>
 		<van-cell-group inset title="功能列表">
 <!--			<van-cell title="正在热门电影" value="正在热门电影"  is-link to="/pages/movieOnInfo/movieOnInfo" center/>-->
 <!--			<van-cell title="视频搜索" value="视频搜索"  is-link to="/pages/mmvideo/mmvideo" center/>-->

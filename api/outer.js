@@ -184,3 +184,17 @@ export const getDesign = (data) => {
         method:'get'
     })
 }
+export const getCategory = () => {
+    return request({
+        url: `/v1/h5/outer/ai/tool/category`,
+        data:{},
+        method:'get'
+    })
+}
+export const getToolaiAiCategory = (data) => {
+    return request({
+        url: `/v1/h5/outer/toolaiAi`,
+        data,
+        method:'get'
+    })
+}

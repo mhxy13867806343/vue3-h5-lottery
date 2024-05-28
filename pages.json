@@ -308,6 +308,26 @@
         // 隐藏系统导航栏
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/aitools/aitools",
+      "style": {
+        "navigationBarTitleText": "ai工具集",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/aitools/toolcategoryprompts/toolcategoryprompts",
+      "style": {
+        "navigationBarTitleText": "ai工具集",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [
