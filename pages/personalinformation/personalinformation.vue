@@ -3,9 +3,17 @@
 <template>
 	<view class="app-container">
 		<uv-cell-group >
-			<uv-cell title="当前用户昵称" isLink url="/pages/userUpdate/userUpdate"
+			<uv-cell title="当前用户昵称" center isLink url="/pages/userUpdate/userUpdate"
 			value="去修改昵称"
 			         label="123"
+			></uv-cell>
+			<uv-cell title="修改密码" center isLink url="/pages/changePassword/changePassword"
+			         value="修改密码"
+			         label=""
+			></uv-cell>
+			<uv-cell title="绑定邮箱" center isLink url="/pages/bindEmail/bindEmail"
+			         value="绑定邮箱"
+			         label=""
 			></uv-cell>
 		</uv-cell-group>
 	</view>

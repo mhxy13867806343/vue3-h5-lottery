@@ -42,7 +42,10 @@
       "path": "pages/userUpdate/userUpdate",
       "style": {
         "navigationBarTitleText": "修改信息",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
       }
     },
     {
@@ -280,13 +283,6 @@
       }
     },
     {
-      "path": "pages/registered/registered",
-      "style": {
-        "navigationBarTitleText": "注册",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
       "path": "pages/login/login",
       "style": {
         "navigationBarTitleText": "登录"
@@ -296,7 +292,10 @@
       "path": "pages/author/author",
       "style": {
         "navigationBarTitleText": "作者介绍",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
       }
     },
     {
@@ -323,6 +322,35 @@
       "path": "pages/aitools/toolcategoryprompts/toolcategoryprompts",
       "style": {
         "navigationBarTitleText": "ai工具集",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/personalinformation/personalinformation",
+      "style": {
+        "navigationBarTitleText": "个人信息",
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/changePassword/changePassword",
+      "style": {
+        "navigationBarTitleText": "修改密码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/bindEmail/bindEmail",
+      "style": {
+        "navigationBarTitleText": "绑定邮箱",
         "enablePullDownRefresh": false,
         "navigationStyle": "custom",
         // 隐藏系统导航栏
