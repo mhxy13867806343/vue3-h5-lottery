@@ -31,6 +31,7 @@ const {   formRef,
 			marginTop: '35%'
 	    }">
 		    <uv-cell title="注册帐号" isLink url="/pages/registered/registered" center></uv-cell>
+		    <uv-cell title="找回密码" isLink url="/pages/recoverpPassword/recoverpPassword" center></uv-cell>
 	    </uv-cell-group>
     </view>
 </template>

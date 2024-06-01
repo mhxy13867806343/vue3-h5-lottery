@@ -24,7 +24,7 @@ export default ()=>{
             {
                 validator: (rule, value, callback) => {
                     if(!getRegExPassword(value)) {
-                        callback ( new Error ( '密码强度太弱啦,第我位字符必须以字母或特殊字符开头，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
+                        callback ( new Error ( '最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
                     }
                     callback()
                 },
@@ -36,7 +36,7 @@ export default ()=>{
             {
                 validator: (rule, value, callback) => {
                     if(!getRegExPassword(value)) {
-                        callback ( new Error ( '密码强度太弱啦,第我位字符必须以字母或特殊字符开头，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
+                        callback ( new Error ( '最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
                     }
                     if(value!== model.password) {
                         callback ( new Error ( '两次密码不一致' ) )

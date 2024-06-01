@@ -1,47 +1,11 @@
 <script setup>
-let frameId = null;
-const form = reactive({
-	  oldPassword: '',
-  newPassword: '',
-  code: '',
-	disabled: false,
-	count:0,
-	text:'获取验证码'
-})
-const formRef=ref(null)
-const rules=reactive({
-
-})
-const onClickSubmit=()=>{
-
-}
-const onClickReset=()=>{
-	formRef.value.resetFields()
-	formRef.value.clearValidate()
-}
-//发送验证码
-const startCountdown = () => {
-	const duration = 60; // 倒计时总时长，单位秒
-	let startTime = Date.now();
-	
-	const tick = () => {
-		let elapsed = Math.floor((Date.now() - startTime) / 1000);
-		form.count = duration - elapsed;
-		form.text = form.count > 0 ? `${form.count}秒后重新获取` : '获取验证码';
-		form.disabled = form.count > 0;
-		
-		if (form.count > 0) {
-			frameId = requestAnimationFrame(tick);
-		} else {
-			cancelAnimationFrame(frameId);
-			form.disabled = false;
-		}
-	};
-	
-	form.disabled = true;
-	tick();
-};
-
+import useForm from "@/hooks/useForm";
+const {    form,
+	formRef,
+	rules,
+	onClickSubmit,
+	onClickReset,
+	startCountdown,onClickVerify}= useForm()
 </script>
 <template>
 	<view class="app-container">
@@ -62,7 +26,7 @@ const startCountdown = () => {
 						<view class="search-uv-flex">
 							<uv-button type="primary"  size="mini"
 							           :disabled="form.disabled"
-							           @click="startCountdown"
+							           @click="startCountdown('code')"
 							           :customStyle="{
 							 display: 'inline-block',
   width: '200rpx',
@@ -79,6 +43,7 @@ const startCountdown = () => {
 								{{  form.text}}
 							</uv-button>
 							<uv-button type="primary"  size="mini"
+							           @click="onClickVerify"
 							           :disabled="!form.code.length"
 							           :customStyle="{
 							 display: 'inline-block',
