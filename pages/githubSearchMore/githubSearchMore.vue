@@ -85,7 +85,7 @@ const getGithubSearchMoreQuqery=(q="")=>{
 	getGithubSearchMore({
 		q
 	}).then(res=>{
-		langSelector.value=res
+		langSelector.value=res.result
 	}).catch(e=>{
 	
 	})

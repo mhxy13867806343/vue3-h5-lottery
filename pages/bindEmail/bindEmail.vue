@@ -5,7 +5,9 @@ const {    form,
 	rules,
 	onClickSubmit,
 	onClickReset,
-	startCountdown}= useForm()
+	startCountdown}= useForm({
+	type: 'bind',
+})
 </script>
 <template>
 	<view class="app-container">

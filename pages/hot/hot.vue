@@ -17,7 +17,7 @@ onMounted(()=>{
 const getHotApiMore1=(type)=>{
 	tabList.value[active.value].list=[]
 	getHotApiMore(type).then(res=>{
-		tabList.value[active.value].list=res
+		tabList.value[active.value].list=res.result||[]
 	})
 }
 const onChangeTabs=index=>{

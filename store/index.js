@@ -21,8 +21,17 @@ const store = new Vuex.Store({
 		setUserData: (state, data={}) => {
 		    state.token = data.token || ''
 			state.userInfo = data.userinfo
-			setStorageSync('token',data.token)
-			setStorageSync('user',data.userinfo)
+			setStorageSync(cacheDataRef.token,data.token)
+			setStorageSync(cacheDataRef.user,data.userinfo)
+		},
+		setUserData1:(state,data)=>{
+			setStorageSync(cacheDataRef.user,data)
+		},
+		setClearUserData: (state) => {
+			state.token = ''
+			state.userInfo = {}
+			removeStorageSync(cacheDataRef.token)
+			removeStorageSync(cacheDataRef.user)
 		},
 		//设置历史记录
 		setHistryList:(state,data)=>{
@@ -52,7 +61,12 @@ const store = new Vuex.Store({
 		setHistryList({commit},data){
 			commit('setHistryList',data)
 		},
-		
+		setUserData1({commit},data){
+			commit('setUserData1',data)
+		},
+		setClearUserData({commit}){
+			commit('setClearUserData')
+		}
 	}
 })
 export default store

@@ -1,10 +1,12 @@
 import { getEmail,getRegExPassword } from "@/common/regtools";
-
+import {postUserBindEmail,postUserVerifyEmail,getUserInfo} from "@/api/outer";
+import store from "@/store";
+import {Toast} from 'vant'
 export default (options={})=>{
     
     let frameId = null;
     const form = reactive({
-        emial:'',
+        email:'',
         oldPassword: '',
         newPassword: '',
         code: '',
@@ -60,7 +62,7 @@ export default (options={})=>{
                     callback(new Error('请输入邮箱'))
                     return false
                 }
-                if(!getEmail(form.emial)){
+                if(!getEmail(value)){
                     callback(new Error('邮箱格式不正确'))
                     return false
                 }
@@ -71,9 +73,46 @@ export default (options={})=>{
             trigger: ['blur']
         }]
     })
+    onMounted(()=>{
+        if(store.state.token) {
+            getUserInfo ().then ( res => {
+                const { code , message , result } = res
+                if ( code === 200 ) {
+                    form.email = result.email
+                   
+                }
+            } ).catch ( err => {
+                console.log ( err )
+            } )
+            
+        }
+    })
     const onClickSubmit=()=>{
+        const emailType=options.type
         formRef.value.validate().then(res => {
-            console.log('校验通过')
+            Toast.loading({
+                message: '处理中...',
+                forbidClick: true,
+                loadingType: 'spinner',
+            });
+            if(emailType==="bind") {
+                postUserBindEmail ({
+                    email: form.email,
+                    code: form.code
+                }).then ( res => {
+                    const { code , message } = res
+                    if ( code === 200 ) {
+                        Toast.success ( message );
+                        setTimeout ( () => {
+                            uni.navigateBack ()
+                        } , 1000 )
+                    } else {
+                        Toast.fail ( message );
+                    }
+                } ).catch ( err => {
+                    console.log ( err )
+                } )
+            }
         }).catch(errors => {
             return false
         })
@@ -85,14 +124,14 @@ export default (options={})=>{
 //发送验证码
     const startCountdown = (type='') => {
         if(type==='email'){
-            if(!form.emial.length){
+            if(!form.email.length){
                 uni.showToast({
                     title: '请输入邮箱',
                     icon: 'none'
                 })
                 return false
             }
-            if(!getEmail(form.emial)){
+            if(!getEmail(form.email)){
                 uni.showToast({
                     title: '邮箱格式不正确',
                     icon: 'none'
@@ -133,6 +172,36 @@ export default (options={})=>{
                 return false
             }
         }
+        Toast.loading({
+            message: '处理中...',
+            forbidClick: true,
+            loadingType: 'spinner',
+        });
+        postUserVerifyEmail({
+            email: form.email
+        }).then(res=>{
+            const { code, message } = res
+            Toast.clear()
+            if (code === 200) {
+                Toast.success(message)
+                tickNowDuration()
+            }
+            else {
+                uni.showToast({
+                    title: message,
+                    icon: 'none'
+                })
+            }
+        }).catch(err=>{
+            Toast.clear()
+            uni.showToast({
+                title: err.message||'请求失败',
+                icon: 'none'
+            })
+        })
+       
+    };
+    const tickNowDuration=()=>{
         const duration = 60; // 倒计时总时长，单位秒
         let startTime = Date.now();
         
@@ -152,7 +221,7 @@ export default (options={})=>{
         
         form.disabled = true;
         tick();
-    };
+    }
     const onClickVerify=()=>{
     
     }

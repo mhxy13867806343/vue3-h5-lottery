@@ -1,11 +1,13 @@
 <script setup>
+import useInfo from "@/hooks/useInfo";
+const {data} = useInfo();
 </script>
 <template>
 	<view class="app-container">
 		<uv-cell-group >
 			<uv-cell title="当前用户昵称" center isLink url="/pages/userUpdate/userUpdate"
 			value="去修改昵称"
-			         label="123"
+			         :label="`昵称:${data.name}`"
 			></uv-cell>
 			<uv-cell title="修改密码" center isLink url="/pages/changePassword/changePassword"
 			         value="修改密码"

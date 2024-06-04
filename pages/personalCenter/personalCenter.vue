@@ -1,15 +1,44 @@
 <script setup>
+import { postUserLogout } from "@/api/outer";
 import  dicts from '@/common/dicts'
 import useMenu from "@/hooks/useMenu";
 import store from "@/store";
+import { Dialog,Toast } from 'vant';
 const { showPopover } = useMenu({type:'person'});
 const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1))
 const isUserToken=computed(()=>store.state.token)
+import useInfo from "@/hooks/useInfo";
+const {data} = useInfo();
 const onClickLogin=()=>{
 	uni.reLaunch({
 		url: '/pages/login/login'
 	});
 }
+const onClickLogout=()=>{
+	Dialog.confirm( {
+		title : '提示' ,
+		message : '确定要退出登录吗？' ,
+	}).then(() => {
+		postUserLogout().then((res) => {
+			const {code,message}=res
+			if(code===200){
+				Toast.success(message);
+				store.dispatch('setClearUserData');
+				uni.switchTab({
+					url: '/pages/home/home'
+				});
+			}else{
+				Toast.fail(message);
+			}
+		}).catch(() => {
+			console.log('取消');
+		});
+		
+	}).catch(() => {
+		console.log('取消');
+	});
+}
+
 </script>
 <template>
 	<view>
@@ -42,7 +71,7 @@ const onClickLogin=()=>{
 		<view class="app-container" v-if="isUserToken">
 			<view class="p-flex-justify-content p-flex-justify-center p-flex-wrap-wrap">
 				<uv-avatar  fontSize="18" randomBgColor></uv-avatar>
-				<uv-cell :border="false" class="p-text-h4 p-text-h4-align-center" title="昵称" isLink url="/pages/personalinformation/personalinformation"></uv-cell>
+				<uv-cell :border="false" class="p-text-h4 p-text-h4-align-center" :title="`昵称:${data.name}`" isLink url="/pages/personalinformation/personalinformation"></uv-cell>
 			</view>
 			<uv-cell-group title="功能设置">
 				<template #title>
@@ -64,6 +93,7 @@ const onClickLogin=()=>{
 				
 				</uv-cell>
 			</uv-cell-group>
+			<van-button type="danger" block @click="onClickLogout">退出登录</van-button>
 		
 		</view>
 		<view v-else class="app-container login-button"
@@ -143,5 +173,8 @@ const onClickLogin=()=>{
 	position: fixed;
 	bottom: 5%;
 	width: 100%;
+}
+.van-button--danger{
+	margin-top: 5%;
 }
 </style>

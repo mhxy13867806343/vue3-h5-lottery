@@ -1,4 +1,5 @@
 import ".env"
+import { cacheDataRef } from "@/common/tools";
 import { Toast } from "vant";
 const request = (options={}) => {
 	if (!options.url) {
@@ -21,7 +22,7 @@ const request = (options={}) => {
 			url,
 			data: options.data || {},
 			header: {
-				"x-token": uni.getStorageSync('token') || ''
+				"Authorization": `Bearer ${uni.getStorageSync(cacheDataRef.token)} `
 			},
 			method: options.method || 'GET',
 			timeout: options.timeout || 60000,
@@ -29,6 +30,7 @@ const request = (options={}) => {
 			success: res=>{
 				Toast.clear()
 				const datas=res.data.data
+				// console.log(datas)
 				const {code,result,message}=datas
 		
 				if(code!==200){
@@ -39,7 +41,7 @@ const request = (options={}) => {
 					reject(datas)
 					return
 				}
-				resolve(result)
+				resolve(datas)
 			},
 			fail: err=>{
 				uni.showToast({

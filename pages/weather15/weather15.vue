@@ -45,7 +45,7 @@ const updateChart=(cityname)=>{
 	nextTick(async () => {
 		try{
 			const res=await getCityname(cityname)
-			dataList.value=res
+			dataList.value=res.result||[]
 			const {forecast}= dataList.value?.data
 			const option = {
 				tooltip: {

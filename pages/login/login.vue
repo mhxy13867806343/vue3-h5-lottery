@@ -5,6 +5,7 @@ const {   formRef,
 	rules,
 	submit,
 	isPassword}=useUser();
+
 </script>
 <template>
     <view class="app-container">

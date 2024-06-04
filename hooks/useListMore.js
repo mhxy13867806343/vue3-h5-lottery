@@ -33,7 +33,7 @@ export default ()=>{
     }
     const getGithubSearchUrlMoreCbAjax=(cb,data)=>{
         cb(data).then(res=>{
-            getResCopy(res)
+            getResCopy(res.result ||[])
            if(!res.length){
                isLen.value=true
            }
@@ -42,7 +42,7 @@ export default ()=>{
         })
     }
     const getResCopy=(res)=>{
-        list.value=[...list.value,...res] ||[]
+        list.value=[...list.value,...res.result] ||[]
     }
     const offsetReset=()=>{
         offset.value=0

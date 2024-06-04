@@ -1,4 +1,65 @@
 import request from '@/common/network';
+export const postLogin = (data) => {
+    return request({
+        url: '/v1/h5/user/login',
+        data,
+        method: 'post'
+    })
+}
+export const postRegistered = (data) => {
+    return request({
+        url: '/v1/h5/user/registered',
+        data,
+        method: 'post'
+    })
+}
+
+export const getUserInfo = (data) => {
+    return request({
+        url: '/v1/h5/user/info',
+        data,
+        method: 'post'
+    })
+}
+
+export const postUserUpdate = (data) => {
+    return request({
+        url: '/v1/h5/user/update',
+        data,
+        method: 'post'
+    })
+}
+
+
+export const postUserLogout = () => {
+    return request({
+        url: '/v1/h5/user/logout',
+        data:{},
+        method: 'post'
+    })
+}
+export const postUserBindEmail = (data) => {
+    return request({
+        url: '/v1/h5/user/bind',
+        data,
+        method: 'post'
+    })
+}
+export const postUserVerifyEmail = (data) => {
+    return request({
+        url: '/v1/h5/user/verify',
+        data,
+        method: 'post'
+    })
+}
+export const postUserResetPwdEmail = (data) => {
+    return request({
+        url: '/v1/h5/user/resetpwd',
+        data,
+        method: 'post'
+    })
+}
+
 export const getToTchTheFish = (type) => {
     return request({
         url: '/v1/h5/outer/touchTheFish',
