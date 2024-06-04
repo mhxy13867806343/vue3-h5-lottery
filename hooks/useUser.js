@@ -68,7 +68,7 @@ export default ()=>{
                         uni.reLaunch({
                             url: '/pages/home/home'
                         })
-                    }, 2000)
+                    }, 1000)
                 } else {
                     toast(res.message)
                 }

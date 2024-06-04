@@ -13,9 +13,9 @@ const {data} = useInfo();
 			         value="修改密码"
 			         label=""
 			></uv-cell>
-			<uv-cell title="绑定邮箱" center isLink url="/pages/bindEmail/bindEmail"
-			         value="绑定邮箱"
-			         label=""
+			<uv-cell title="绑定邮箱" center isLink :url="data.emailStatus===0?'/pages/bindEmail/bindEmail':''"
+			         :value="data.emailStatus===0?'绑定邮箱':'已绑定邮箱'"
+			         :label="data.emailStatus===1?data.email:'绑定邮箱'"
 			></uv-cell>
 		</uv-cell-group>
 	</view>

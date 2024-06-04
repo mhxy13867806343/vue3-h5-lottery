@@ -10,7 +10,7 @@ export default ()=>{
             getUserInfo().then(res=>{
                 if(res.code===200){
                     data.value=res.result
-                    if(!res.result.email.length){
+                    if(res.result.emailStatus===0){
                         Dialog.confirm({
                                 theme: 'round-button',
                                 title: '提示',

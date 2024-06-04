@@ -6,7 +6,7 @@ export default (options={})=>{
     
     let frameId = null;
     const form = reactive({
-        email:'',
+        email:'869710179@qq.com',
         oldPassword: '',
         newPassword: '',
         code: '',
@@ -79,12 +79,12 @@ export default (options={})=>{
                 const { code , message , result } = res
                 if ( code === 200 ) {
                     form.email = result.email
-                   
+
                 }
             } ).catch ( err => {
                 console.log ( err )
             } )
-            
+
         }
     })
     const onClickSubmit=()=>{
