@@ -30,6 +30,21 @@ export const postUserUpdate = (data) => {
     })
 }
 
+export const getListSendEmail = (data) => {
+    return request({
+        url: '/v1/h5/email/list',
+        data,
+        method: 'get'
+    })
+}
+
+export const postSendEmail = (data) => {
+    return request({
+        url: '/v1/h5/email/send',
+        data,
+        method: 'post'
+    })
+}
 
 export const postUserLogout = () => {
     return request({
