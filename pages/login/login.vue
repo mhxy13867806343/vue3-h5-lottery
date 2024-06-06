@@ -1,10 +1,18 @@
 <script setup>
 import useUser from "@/hooks/useUser";
+import store from "@/store";
 const {   formRef,
 	model,
 	rules,
 	submit,
 	isPassword}=useUser();
+onShow(()=>{
+	if(store.state.token ){
+		uni.switchTab({
+			url: '/pages/home/home'
+		});
+	}
+})
 
 </script>
 <template>

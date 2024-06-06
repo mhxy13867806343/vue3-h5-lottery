@@ -22,9 +22,12 @@ export default ()=>{
             { required: true, message:msgToaster.pwd, trigger: ['blur', 'change']},
             {
                 validator: (rule, value, callback) => {
-                    if(!getRegExPassword(value)) {
-                       return  callback ( new Error ( msgToaster.pwd1 ) )
+                    if (!value) {
+                        return callback(new Error('请输入密码'))
                     }
+                    // if(!getRegExPassword(value)) {
+                    //    return  callback ( new Error ( msgToaster.pwd1 ) )
+                    // }
                     callback()
                 },
                 trigger: ['blur', 'change']
@@ -34,10 +37,12 @@ export default ()=>{
             { required: true, message:  msgToaster.pwd, trigger: ['blur', 'change']},
             {
                 validator: (rule, value, callback) => {
-                    console.log(value,model.password,getRegExPassword(value))
-                    if(!getRegExPassword(value)) {
-                        return callback ( new Error ( msgToaster.pwd1 ) )
+                    if (!value) {
+                        return callback(new Error('请输入密码'))
                     }
+                    // if(!getRegExPassword(value)) {
+                    //     return callback ( new Error ( msgToaster.pwd1 ) )
+                    // }
                     if(value!== model.password) {
                         return callback ( new Error ( msgToaster.pwd2 ) )
                     }

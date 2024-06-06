@@ -5,7 +5,9 @@ const {    form,
 	rules,
 	onClickSubmit,
 	onClickReset,
-	startCountdown,onClickVerify}= useForm({})
+	startCountdown1,onClickVerify}= useForm({
+	type:"recover"
+})
 </script>
 <template>
 	<view class="app-container">
@@ -32,7 +34,7 @@ const {    form,
 						<view class="search-uv-flex">
 							<uv-button type="primary"  size="mini"
 							           :disabled="form.disabled"
-							           @click="startCountdown('email')"
+							           @click="startCountdown1('email')"
 							           :customStyle="{
 							 display: 'inline-block',
   width: '200rpx',
@@ -48,22 +50,6 @@ const {    form,
 							>
 								{{  form.text}}
 							</uv-button>
-							<uv-button type="primary"  size="mini"
-							           :disabled="!form.code.length"
-							           @click="onClickVerify"
-							           :customStyle="{
-							 display: 'inline-block',
-  height: '50rpx',
-  lineHeight: '50rpx',
-  fontSize: '24rpx',
-  borderRadius: '10rpx',
-  border: '.5px solid rgb(3 4 94 / 0%)',
-  position: 'relative',
-  overflow: 'hidden',
-     
-						}"
-							
-							>验证</uv-button>
 						</view>
 					</template>
 				</uv-input>

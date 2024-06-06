@@ -5,7 +5,9 @@ const {    form,
 	rules,
 	onClickSubmit,
 	onClickReset,
-	startCountdown,onClickVerify}= useForm({})
+	startCountdown,onClickVerify}= useForm({
+	type:'change'
+})
 </script>
 <template>
 	<view class="app-container">
@@ -42,22 +44,6 @@ const {    form,
 							>
 								{{  form.text}}
 							</uv-button>
-							<uv-button type="primary"  size="mini"
-							           @click="onClickVerify"
-							           :disabled="!form.code.length"
-							           :customStyle="{
-							 display: 'inline-block',
-  height: '50rpx',
-  lineHeight: '50rpx',
-  fontSize: '24rpx',
-  borderRadius: '10rpx',
-  border: '.5px solid rgb(3 4 94 / 0%)',
-  position: 'relative',
-  overflow: 'hidden',
-     
-						}"
-							
-							>验证</uv-button>
 						</view>
 					</template>
 				</uv-input>

@@ -1,5 +1,13 @@
+import msg from "@/common/msg";
 import { getEmail,getRegExPassword } from "@/common/regtools";
-import {postUserBindEmail,postUserVerifyEmail,getUserInfo} from "@/api/outer";
+import msgDefault from '@/common/msg'
+import {
+    postUserBindEmail ,
+    postUserVerifyEmail ,
+    getUserInfo ,
+    postUserVerifyCode ,
+    postUserResetPwdEmail,postUserVerifyEmail1
+} from "@/api/outer";
 import store from "@/store";
 import {Toast} from 'vant'
 export default (options={})=>{
@@ -17,22 +25,22 @@ export default (options={})=>{
     const formRef=ref(null)
     const rules=ref({
         code:[
-            { required: true, message: '请输入验证码', trigger: ['blur', 'change']},
+            { required: true, message: msgDefault.pwd3, trigger: ['blur', 'change']},
         ],
         newPassword: [
-            { required: true, message: '请输入新密码', trigger: ['blur', 'change']},
+            { required: true, message:msgDefault.pwd4, trigger: ['blur', 'change']},
             {
                 validator: (rule, value, callback) => {
                     if(!value){
-                        callback(new Error('请输入新密码'))
+                        callback(new Error(msgDefault.pwd4))
                         return false
                     }
-                    if(!getRegExPassword(value)) {
-                        callback ( new Error ( '最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
-                        return  false
-                    }
+                    // if(!getRegExPassword(value)) {
+                    //     callback ( new Error ( msgDefault.pwd1 ) )
+                    //     return  false
+                    // }
                     if(value!== form.oldPassword) {
-                        callback ( new Error ( '两次密码不一致' ) )
+                        callback ( new Error ( msgDefault.pwd5 ) )
                         return  false
                     }
                     callback()
@@ -40,17 +48,17 @@ export default (options={})=>{
                 trigger: ['blur',]
             }
         ],
-        oldPassword: [{ required: true, message: '请输入密码', trigger: ['blur', 'change']},
+        oldPassword: [{ required: true, message: msgDefault.pwd, trigger: ['blur', 'change']},
             {
                 validator: (rule, value, callback) => {
                     if(!value){
-                        callback(new Error('请输入密码'))
+                        callback(new Error(msgDefault.pwd))
                         return false
                     }
-                    if(!getRegExPassword(value)) {
-                        callback ( new Error ( '最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符' ) )
-                        return false
-                    }
+                    // if(!getRegExPassword(value)) {
+                    //     callback ( new Error ( msgDefault.pwd1 ) )
+                    //     return false
+                    // }
                     callback()
                 },
                 trigger: ['blur', 'change']
@@ -79,10 +87,12 @@ export default (options={})=>{
                 const { code , message , result } = res
                 if ( code === 200 ) {
                     form.email = result.email
-
+                    Toast.success ( message );
+                }else{
+                    Toast.fail ( message );
                 }
             } ).catch ( err => {
-                console.log ( err )
+                Toast.fail ( err.message );
             } )
 
         }
@@ -113,6 +123,31 @@ export default (options={})=>{
                     console.log ( err )
                 } )
             }
+            if(emailType==="recover"){
+            
+            }
+            if(emailType==='change' ){
+                postUserResetPwdEmail({
+                    email: form.email,
+                    code: form.code,
+                    password: form.newPassword
+                }).then(res=>{
+                    Toast.clear()
+                    const { code , message } = res
+                    if(code===200){
+                        Toast.success(message)
+                        setTimeout(()=>{
+                            uni.navigateBack()
+                        },1000)
+                    }else{
+                        Toast.fail(message)
+                    }
+                }).catch(e=>{
+                    console.log(e)
+                    Toast.clear()
+                    Toast.fail(e.message)
+                })
+            }
         }).catch(errors => {
             return false
         })
@@ -120,6 +155,49 @@ export default (options={})=>{
     const onClickReset=()=>{
         formRef.value.resetFields()
         formRef.value.clearValidate()
+    }
+    const startCountdown1=()=>{
+        if(!form.email.length){
+            uni.showToast({
+                title: '请输入邮箱',
+                icon: 'none'
+            })
+            return false
+        }
+        if(!getEmail(form.email)){
+            uni.showToast({
+                title: '邮箱格式不正确',
+                icon: 'none'
+            })
+            return false
+        }
+        Toast.loading({
+            message: '处理中...',
+            forbidClick: true,
+            loadingType: 'spinner',
+        });
+        postUserVerifyEmail({
+            email: form.email
+        }).then(res=>{
+            const { code, message } = res
+            Toast.clear()
+            if (code === 200) {
+                Toast.success(message)
+                tickNowDuration()
+            }
+            else {
+                uni.showToast({
+                    title: message,
+                    icon: 'none'
+                })
+            }
+        }).catch(err=>{
+            Toast.clear()
+            uni.showToast({
+                title: err.message||'请求失败',
+                icon: 'none'
+            })
+        })
     }
 //发送验证码
     const startCountdown = (type='') => {
@@ -223,7 +301,34 @@ export default (options={})=>{
         tick();
     }
     const onClickVerify=()=>{
-    
+     const type=options.type
+     if(type==="change"){
+         postUserVerifyCode1({
+             email:form.email,
+             code:form.code
+         })
+     }
+    }
+    const postUserVerifyCode1=data=>{
+        Toast.loading({
+            message: '验证中...',
+            forbidClick: true,
+            loadingType: 'spinner',
+        });
+        postUserVerifyCode(data).then(res=>{
+            const { code, message } = res
+            Toast.clear()
+            if (code === 200) {
+                Toast.success(message)
+                tickNowDuration()
+            }
+            else {
+            
+            }
+        }).catch(e=>{
+            Toast.clear()
+           
+        })
     }
     return {
         form,
@@ -232,7 +337,8 @@ export default (options={})=>{
         onClickSubmit,
         onClickReset,
         startCountdown,
-        onClickVerify
+        onClickVerify,
+        startCountdown1
     }
 
 }

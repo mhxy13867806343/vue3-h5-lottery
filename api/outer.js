@@ -22,6 +22,14 @@ export const getUserInfo = (data) => {
     })
 }
 
+export const postUserVerifyCode = (data) => {
+    return request({
+        url: '/v1/h5/user/verifyCode',
+        data,
+        method: 'post'
+    })
+}
+
 export const postUserUpdate = (data) => {
     return request({
         url: '/v1/h5/user/update',
@@ -56,6 +64,13 @@ export const postUserLogout = () => {
 export const postUserBindEmail = (data) => {
     return request({
         url: '/v1/h5/user/bind',
+        data,
+        method: 'post'
+    })
+}
+export const postUserVerifyEmail1= (data) => {
+    return request({
+        url: '/v1/h5/user/verify1',
         data,
         method: 'post'
     })
