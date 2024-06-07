@@ -6,7 +6,7 @@ import {
     postUserVerifyEmail ,
     getUserInfo ,
     postUserVerifyCode ,
-    postUserResetPwdEmail,postUserVerifyEmail1
+    postUserResetPwdEmail,postUserRecoverEmail,postUserRecPassVerify
 } from "@/api/outer";
 import store from "@/store";
 import {Toast} from 'vant'
@@ -15,8 +15,8 @@ export default (options={})=>{
     let frameId = null;
     const form = reactive({
         email:'869710179@qq.com',
-        oldPassword: '',
-        newPassword: '',
+        oldPassword: '1234567',
+        newPassword: '1234567',
         code: '',
         disabled: false,
         count:0,
@@ -97,6 +97,26 @@ export default (options={})=>{
 
         }
     })
+    const postCbPwd=(cb)=>{
+        cb({
+            email: form.email,
+            code: form.code,
+            password: form.newPassword
+        }).then(res=>{
+            Toast.clear()
+            const { code , message } = res
+            if(code===200){
+                Toast.success(message)
+                setTimeout(()=>{
+                    uni.navigateBack()
+                },1000)
+            }else{
+                Toast.fail(message)
+            }
+        }).catch(e=>{
+            Toast.clear()
+        })
+    }
     const onClickSubmit=()=>{
         const emailType=options.type
         formRef.value.validate().then(res => {
@@ -124,29 +144,11 @@ export default (options={})=>{
                 } )
             }
             if(emailType==="recover"){
-            
+                postCbPwd(postUserRecPassVerify)
+                
             }
             if(emailType==='change' ){
-                postUserResetPwdEmail({
-                    email: form.email,
-                    code: form.code,
-                    password: form.newPassword
-                }).then(res=>{
-                    Toast.clear()
-                    const { code , message } = res
-                    if(code===200){
-                        Toast.success(message)
-                        setTimeout(()=>{
-                            uni.navigateBack()
-                        },1000)
-                    }else{
-                        Toast.fail(message)
-                    }
-                }).catch(e=>{
-                    console.log(e)
-                    Toast.clear()
-                    Toast.fail(e.message)
-                })
+                postCbPwd(postUserResetPwdEmail)
             }
         }).catch(errors => {
             return false
@@ -176,7 +178,7 @@ export default (options={})=>{
             forbidClick: true,
             loadingType: 'spinner',
         });
-        postUserVerifyEmail({
+        postUserRecoverEmail({
             email: form.email
         }).then(res=>{
             const { code, message } = res

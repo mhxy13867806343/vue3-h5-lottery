@@ -4,15 +4,17 @@
 import { getCategory , getCity , getHotcity , } from "@/api/outer";
 import { cacheDataRef , setStorageSync,getStorageSync } from "@/common/tools";
 onMounted(() => {
+
 	if(!getStorageSync ( cacheDataRef.city ).length){
 		getCity().then(res => {
-			setStorageSync(cacheDataRef.city, res||[])
+			setStorageSync(cacheDataRef.city, res.result||[])
 		}).catch(err => {
 		})
 	}
+	
 	if(!getStorageSync ( cacheDataRef.hotcity ).length){
 		getHotcity().then(res => {
-			setStorageSync(cacheDataRef.hotcity, res.topCityList ||[])
+			setStorageSync(cacheDataRef.hotcity, res.result?.topCityList ||[])
 		}).catch(err => {
 		})
 	}

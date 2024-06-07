@@ -68,13 +68,22 @@ export const postUserBindEmail = (data) => {
         method: 'post'
     })
 }
-export const postUserVerifyEmail1= (data) => {
+export const postUserRecPassVerify= (data) => {
     return request({
-        url: '/v1/h5/user/verify1',
+        url: '/v1/h5/user/recPassVerify',
         data,
         method: 'post'
     })
 }
+
+export const postUserRecoverEmail= (data) => {
+    return request({
+        url: '/v1/h5/user/recoverEmail',
+        data,
+        method: 'get'
+    })
+}
+
 export const postUserVerifyEmail = (data) => {
     return request({
         url: '/v1/h5/user/verify',

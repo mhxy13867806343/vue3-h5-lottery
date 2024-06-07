@@ -42,7 +42,12 @@ export default ()=>{
         })
     }
     const getResCopy=(res)=>{
-        list.value=[...list.value,...res.result] ||[]
+        if(res.length){
+            list.value=[...list.value,...res]
+        }else{
+            list.value=[...list.value,...res.result] ||[]
+        }
+       
     }
     const offsetReset=()=>{
         offset.value=0
