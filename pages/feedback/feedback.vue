@@ -67,23 +67,16 @@ const handleSubmit=()=>{
 			message: '是否要进行反馈呢?',
 		})
 		.then(() => {
-			Toast.loading({
-				message: '反馈提交中...',
-				forbidClick: true,
-				loadingType: 'spinner',
-			});
 			postSendEmail({
 				title: title.value,
 				email: email.value,
 				content: feedback.value
 			}).then(res => {
-					Toast.clear()
 					const {code,message}=res
 					if(code!==200){
-						Toast.fail(message)
-						
+					
 					}else{
-						Toast.success(message)
+						
 						title.value = ''
 						email.value = ''
 						feedback.value = ''
@@ -91,7 +84,6 @@ const handleSubmit=()=>{
 					}
 				})
 				.catch(err => {
-					Toast.clear()
 				})
 		})
 		.catch(() => {
@@ -115,17 +107,11 @@ const onSearch=()=>{
 	histySendEmail()
 }
 const histySendEmail=()=>{
-	Toast.loading({
-		message: '搜索中...',
-		forbidClick: true,
-		loadingType: 'spinner',
-	});
 	getListSendEmail({
 		email:searchEmail.value,
 		pageNum:1,
 		pageSize:99
 	}).then(res => {
-		Toast.clear()
 		const {code,message,result:{data,total}}=res
 		count.value=total
 		if(code===200){
@@ -137,11 +123,9 @@ const histySendEmail=()=>{
 			Toast.success(`已查询到${data.length}条反馈记录，来自${searchEmail.value}用户的记录`)
 			list.value=data||[]
 		}else{
-			Toast.fail(message)
 		}
 	}).catch(err => {
-		Toast.clear()
-		console.log(err)
+	
 	})
 }
 const onInput = val => {

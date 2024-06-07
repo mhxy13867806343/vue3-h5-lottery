@@ -43,5 +43,7 @@
 <style lang="scss">
     @import '@/uni_modules/uv-ui-tools/index.scss';
    @import '@/static/font/iconfont.css';
-   
+    @import "@/GraceUI5-157599/GraceUI5/css/graceUI.css";
+    /* 加载主题样式 */
+    @import "@/GraceUI5-157599/GraceUI5/skin/black.css";
 </style>

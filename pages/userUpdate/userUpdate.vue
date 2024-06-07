@@ -27,16 +27,9 @@ const onUpdateInfo=()=>{
 		name:name.value
 	
 	}
-	// 自定义加载图标
-	Toast.loading({
-		message: '修改信息中...',
-		forbidClick: true,
-		loadingType: 'spinner',
-	});
 	postUserUpdate(data1).then((res) => {
 		const {code,message}=res
 		if(code===200){
-			Toast.clear();
 			uni.showToast ( {
 				title :message,
 				icon : "success",
@@ -50,18 +43,8 @@ const onUpdateInfo=()=>{
 			} )
 			
 		}else{
-			Toast.clear();
-			uni.showToast ( {
-				title :res.message ,
-				icon : "none"
-			} )
 		}
 	} ).catch((err) => {
-		Toast.clear();
-		uni.showToast ( {
-			title :err.message ,
-			icon : "none"
-		} )
 	})
 }
 </script>

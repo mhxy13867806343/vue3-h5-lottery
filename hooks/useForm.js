@@ -87,12 +87,11 @@ export default (options={})=>{
                 const { code , message , result } = res
                 if ( code === 200 ) {
                     form.email = result.email
-                    Toast.success ( message );
+                  
                 }else{
-                    Toast.fail ( message );
+                
                 }
             } ).catch ( err => {
-                Toast.fail ( err.message );
             } )
 
         }
@@ -103,28 +102,21 @@ export default (options={})=>{
             code: form.code,
             password: form.newPassword
         }).then(res=>{
-            Toast.clear()
             const { code , message } = res
             if(code===200){
-                Toast.success(message)
+                
                 setTimeout(()=>{
                     uni.navigateBack()
                 },1000)
             }else{
-                Toast.fail(message)
             }
         }).catch(e=>{
-            Toast.clear()
         })
     }
     const onClickSubmit=()=>{
         const emailType=options.type
         formRef.value.validate().then(res => {
-            Toast.loading({
-                message: '处理中...',
-                forbidClick: true,
-                loadingType: 'spinner',
-            });
+            
             if(emailType==="bind") {
                 postUserBindEmail ({
                     email: form.email,
@@ -132,12 +124,11 @@ export default (options={})=>{
                 }).then ( res => {
                     const { code , message } = res
                     if ( code === 200 ) {
-                        Toast.success ( message );
                         setTimeout ( () => {
                             uni.navigateBack ()
                         } , 1000 )
                     } else {
-                        Toast.fail ( message );
+                    
                     }
                 } ).catch ( err => {
                     console.log ( err )
@@ -173,32 +164,18 @@ export default (options={})=>{
             })
             return false
         }
-        Toast.loading({
-            message: '处理中...',
-            forbidClick: true,
-            loadingType: 'spinner',
-        });
+       
         postUserRecoverEmail({
             email: form.email
         }).then(res=>{
             const { code, message } = res
-            Toast.clear()
             if (code === 200) {
-                Toast.success(message)
                 tickNowDuration()
             }
             else {
-                uni.showToast({
-                    title: message,
-                    icon: 'none'
-                })
+            
             }
         }).catch(err=>{
-            Toast.clear()
-            uni.showToast({
-                title: err.message||'请求失败',
-                icon: 'none'
-            })
         })
     }
 //发送验证码
@@ -252,32 +229,16 @@ export default (options={})=>{
                 return false
             }
         }
-        Toast.loading({
-            message: '处理中...',
-            forbidClick: true,
-            loadingType: 'spinner',
-        });
         postUserVerifyEmail({
             email: form.email
         }).then(res=>{
             const { code, message } = res
-            Toast.clear()
             if (code === 200) {
-                Toast.success(message)
                 tickNowDuration()
             }
             else {
-                uni.showToast({
-                    title: message,
-                    icon: 'none'
-                })
             }
         }).catch(err=>{
-            Toast.clear()
-            uni.showToast({
-                title: err.message||'请求失败',
-                icon: 'none'
-            })
         })
        
     };
@@ -312,24 +273,16 @@ export default (options={})=>{
      }
     }
     const postUserVerifyCode1=data=>{
-        Toast.loading({
-            message: '验证中...',
-            forbidClick: true,
-            loadingType: 'spinner',
-        });
         postUserVerifyCode(data).then(res=>{
             const { code, message } = res
-            Toast.clear()
             if (code === 200) {
-                Toast.success(message)
                 tickNowDuration()
             }
             else {
             
             }
         }).catch(e=>{
-            Toast.clear()
-           
+        
         })
     }
     return {

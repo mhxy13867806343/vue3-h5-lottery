@@ -22,13 +22,11 @@ const onClickLogout=()=>{
 		postUserLogout().then((res) => {
 			const {code,message}=res
 			if(code===200){
-				Toast.success(message);
 				store.dispatch('setClearUserData');
 				uni.switchTab({
 					url: '/pages/home/home'
 				});
 			}else{
-				Toast.fail(message);
 			}
 		}).catch(() => {
 			console.log('取消');

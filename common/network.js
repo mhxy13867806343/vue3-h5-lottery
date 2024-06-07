@@ -10,7 +10,7 @@ const request = (options={}) => {
 		return
 	}
 	Toast.loading({
-		message: '正在加载中...',
+		message: '加载中...',
 		forbidClick: true,
 		loadingType: 'spinner',
 	});

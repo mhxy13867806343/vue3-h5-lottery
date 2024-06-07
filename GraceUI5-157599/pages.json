@@ -1,0 +1,53 @@
+{
+	"pages": [
+		{
+		    "path" : "pages/switchPages/index",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "GraceUI",
+		        "navigationStyle" : "custom"
+		    }
+		}
+        ,{
+            "path" : "pages/switchPages/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "GraceUI · 关于",
+				"navigationStyle" : "custom"
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "GraceUI",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#B6C3D2",
+		"selectedColor": "#2B2E3D",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [
+			{
+				"pagePath": "pages/switchPages/index",
+				"iconPath": "static/menu_imgs/menu_1.png",
+				"selectedIconPath": "static/menu_imgs/menu_1a.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/switchPages/about",
+				"iconPath": "static/menu_imgs/menu_2.png",
+				"selectedIconPath": "static/menu_imgs/menu_2a.png",
+				"text": "关于"
+			}
+		]
+	},
+	"easycom": {
+		"custom": {
+			"autoscan": true,
+			"gui-(.*)": "@/GraceUI5/components/gui-$1.vue"
+		}
+	}
+}
