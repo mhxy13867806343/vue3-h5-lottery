@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from "dayjs";
 import { postUserLogout } from "@/api/outer";
 import  dicts from '@/common/dicts'
 import useMenu from "@/hooks/useMenu";
@@ -9,6 +10,7 @@ const newsList = ref(dicts.personMenuList.slice(0, dicts.personMenuList.length-1
 const isUserToken=computed(()=>store.state.token)
 import useInfo from "@/hooks/useInfo";
 const {data} = useInfo();
+const newTip=ref("")
 const onClickLogin=()=>{
 	uni.reLaunch({
 		url: '/pages/login/login'
@@ -36,7 +38,49 @@ const onClickLogout=()=>{
 		console.log('取消');
 	});
 }
+let timer=null
+onShow(()=>{
 
+	if (store.state.token){
+		let tip=""
+		const pwd90=90
+		timer=setTimeout(()=>{
+			// 获取当前时间
+			const currentTime = dayjs();
+			
+			// 获取 lastTime
+			const lastTime = dayjs.unix(data.value.lastTime);
+			
+			// 计算时间差
+			const differenceInDays = currentTime.diff(lastTime, 'day');
+			
+			// 检查时间差是否超过 90 天
+			if (differenceInDays >pwd90) {
+				tip=`提示: 您的密码已经超过的超过了${pwd90}天未进行修改了，请进行修改`
+				clearTimeout(timer)
+			}
+			newTip.value=tip
+		},1000)
+	}
+	
+})
+
+const onTipPassWord=()=>{
+	clearTimeout(timer)
+	uni.showModal({
+		title: '提示',
+		content: '您确定要修改密码吗？',
+		success: (res) => {
+			if (res.confirm) {
+				uni.navigateTo({
+					url: '/pages/changePassword/changePassword'
+				})
+			} else if (res.cancel) {
+				console.log('用户点击取消');
+			}
+		}
+	})
+}
 </script>
 <template>
 	<view>
@@ -66,6 +110,10 @@ const onClickLogout=()=>{
 				</van-popover>
 			</template>
 		</van-nav-bar>
+		<uv-notice-bar :text="newTip" v-if="newTip"
+		               mode="link"
+		               @click="onTipPassWord"
+		></uv-notice-bar>
 		<view class="app-container" v-if="isUserToken">
 			<view class="p-flex-justify-content p-flex-justify-center p-flex-wrap-wrap">
 				<uv-avatar  fontSize="18" randomBgColor></uv-avatar>
@@ -104,9 +152,6 @@ const onClickLogout=()=>{
 			></uv-cell>
 		</view>
 	</view>
-
-
-
 </template>
 
 
