@@ -74,9 +74,9 @@ const handleSubmit=()=>{
 			}).then(res => {
 					const {code,message}=res
 					if(code!==200){
-					
+						Toast.fail(message)
 					}else{
-						
+						Toast.success(message)
 						title.value = ''
 						email.value = ''
 						feedback.value = ''

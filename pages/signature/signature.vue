@@ -6,14 +6,13 @@ const { signature, onClickSendSignature } = useConnent();
 
 <template>
 	<view class="app-container">
-		<uv-textarea v-model="signature" placeholder="请输入签名内容" count fixed maxlength="25"
+		<uv-textarea v-model="signature" placeholder="写点东西吧,至少表示您还在地球上生活过" count fixed maxlength="64"
 		clearable focus
 		             :customStyle="{
 			margin: '30rpx',
 		             }"
 		></uv-textarea>
 		<uv-button type="primary" text="发布签名内容"
-		:disabled="!signature.length"
 		           @click="onClickSendSignature"
 		></uv-button>
 	</view>

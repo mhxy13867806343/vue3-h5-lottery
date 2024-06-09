@@ -298,3 +298,20 @@ export const getToolaiAiCategory = (data) => {
         method:'get'
     })
 }
+
+export const postSignatureAdd = (data) => {
+    return request({
+        url: `/v1/h5/signature/add`,
+        data,
+        method:'post'
+    })
+}
+
+
+export const getSignatureConnent = (data) => {
+    return request({
+        url: `/v1/h5/signature/connentId`,
+        data,
+        method:'get'
+    })
+}

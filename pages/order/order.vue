@@ -28,7 +28,7 @@ onMounted(() => {
 </script>
 <template>
 	<view>
-		<van-cell-group inset title="ai工具集">
+		<van-cell-group inset title="ai工具集" v-if="0">
 			<van-cell is-link center title="ai工具集" value="ai工具集" to="/pages/aitools/aitools"></van-cell>
 		</van-cell-group>
 		<van-cell-group inset title="功能列表">
