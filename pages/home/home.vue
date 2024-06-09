@@ -80,7 +80,6 @@ const onPageChange=(page)=>{
 }
 const homemodel=cacheDataRef.homemodel
 onMounted(()=>{
-	
 	const temp=getStorageSync(homemodel )
 	if(!temp){
 		if(modalRef.value){

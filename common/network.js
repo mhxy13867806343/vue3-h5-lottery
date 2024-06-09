@@ -16,7 +16,6 @@ const request = (options={}) => {
 	});
 	// 处理 apiUrl
 	return new Promise((resolve, reject) => {
-		
 		const url=process.uniEnv.BASE_API+ options.url;
 		uni.request({
 			url,
