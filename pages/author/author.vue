@@ -1,4 +1,5 @@
 <script setup>
+import { Dialog } from 'vant';
 import { getAuthorinfo } from "@/api/outer";
 import { setClipboardData } from "@/common/tools";
 const data=ref({})
@@ -9,6 +10,14 @@ onMounted(()=>{
 	});
 })
 
+const versionClick=(version)=>{
+	Dialog.alert({
+		title: '提示',
+		message: `当前版本为${version}，暂无更新`,
+	}).then(() => {
+		// on close
+	});
+}
 </script>
 <template>
 	<view class="">
@@ -34,6 +43,21 @@ onMounted(()=>{
 				<view class="search-uv-flex justify-content-center">
 					
 					<uv-image :src="$processImg(data&&data.authorImg)"  :fade="true" duration="450"
+					          width="150"
+					          height="150" observeLazyLoad
+					>
+						<template v-slot:loading>
+							<uv-loading-icon color="red"></uv-loading-icon>
+						</template>
+						<template v-slot:error>
+							<view style="font-size: 24rpx;">加载失败</view>
+						</template>
+					</uv-image>
+				</view>
+				<van-cell center title="作者qq"></van-cell>
+				<view class="search-uv-flex justify-content-center">
+					
+					<uv-image :src="$processImg(data&&data.qqAuthorImg)"  :fade="true" duration="450"
 					          width="150"
 					          height="150" observeLazyLoad
 					>
@@ -92,7 +116,9 @@ onMounted(()=>{
 		<van-cell-group inset>
 			<van-cell center title="作者语录" :value="data&&data.saying"></van-cell>
 			<van-cell center title="作者主营" :value="data&&data.industry"></van-cell>
-			<van-cell center title="版本号" :value="data&&data.version"></van-cell>
+			<van-cell center title="版本号" :value="data&&data.version"
+			@click="versionClick(data&&data.version)"
+			></van-cell>
 		</van-cell-group>
 	</view>
 </template>

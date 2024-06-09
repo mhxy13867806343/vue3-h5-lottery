@@ -10,6 +10,7 @@ export const cacheDataRef={
     token:'h5-sb-url-token',
     user:'h5-sb-url-user',
     category:'h5-sb-url-category-ai',
+    homemodel:"home-model",
 
 }
 

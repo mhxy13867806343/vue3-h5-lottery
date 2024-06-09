@@ -1,6 +1,6 @@
 <script setup>
 import { getGithubSearch } from "@/api/outer";
-import { setClipboardData } from "@/common/tools";
+import { cacheDataRef , getStorageSync , setClipboardData , setStorageSync } from "@/common/tools";
 const search=ref('')
 const currentPage=ref(0)
 const dataList=ref( {})
@@ -27,6 +27,7 @@ const cellRouterList=[
 		,value:'更多热点资源'
 	}
 ]
+const modalRef=ref(null)
 const onClickSearch=(q)=>{
 	dataList.value={}
 	search.value=q
@@ -76,6 +77,21 @@ const onClickGitMore=(url)=>{
 const onPageChange=(page)=>{
 	offset.value=page
 	onClickSearch(search.value)
+}
+const homemodel=cacheDataRef.homemodel
+onMounted(()=>{
+	
+	const temp=getStorageSync(homemodel )
+	if(!temp){
+		if(modalRef.value){
+			modalRef.value.open()
+		}
+	}
+	
+})
+const onConfirm=()=>{
+	modalRef.value.close()
+	setStorageSync(homemodel,true)
 }
 </script>
 <template>
@@ -193,6 +209,16 @@ const onPageChange=(page)=>{
 			</template>
 			<template #page="{ text }">{{ text }}</template>
 		</van-pagination>
+		<uv-modal ref="modalRef" title="说明"  zoom @confirm="onConfirm">
+			<view class="slot-content">
+				<view class="slot-content-connitem">
+					后端由python和fastapi实现相关的接口
+				</view>
+				<view class="slot-content-connitem">
+					前端由vue/uniapp相关的组件实现界面的展示，交互和样式处理
+				</view>
+			</view>
+		</uv-modal>
 	</view>
 </template>
 <style scoped lang="scss">

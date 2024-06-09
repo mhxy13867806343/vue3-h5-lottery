@@ -41,6 +41,7 @@ onShow(()=>{
 	    }">
 		    <uv-cell title="注册帐号" isLink url="/pages/registered/registered" center></uv-cell>
 		    <uv-cell title="找回密码" isLink url="/pages/recoverpPassword/recoverpPassword" center></uv-cell>
+		    <uv-cell title="工具相关" isLink url="/pages/tools/tools" center></uv-cell>
 	    </uv-cell-group>
     </view>
 </template>

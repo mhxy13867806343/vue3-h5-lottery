@@ -372,6 +372,13 @@
         // 隐藏系统导航栏
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/tools/tools",
+      "style": {
+        "navigationBarTitleText": "工具类",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "subPackages": [

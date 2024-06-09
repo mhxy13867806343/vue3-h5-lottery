@@ -1,4 +1,6 @@
 <script setup>
+import useInfo from "@/hooks/useInfo";
+const {data} = useInfo();
 import { postSendEmail,getListSendEmail } from "@/api/outer";
 import {tempEmailList} from '@/common/variable'
 import dayjs from 'dayjs'
@@ -28,6 +30,11 @@ const actions=[{
 </svg>`
 }]
 const showPopover=ref(false)
+watch(()=>data.value,(a,b)=>{
+	if(a.email){
+		email.value=a.email
+	}
+})
 watch(()=>email.value, (newVal, oldVal) => {
 	const result=getEmail(newVal)
 	if(result){
@@ -169,6 +176,7 @@ const onClickSearchEmail=item=>{
 	isSearchEmail.value=false
 	histySendEmail()
 }
+
 </script>
 <template>
 	<view class="feedback app-container">

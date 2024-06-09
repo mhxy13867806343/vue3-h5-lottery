@@ -125,19 +125,17 @@ const onTipPassWord=()=>{
 						<van-icon name="setting-o" /><span>功能设置</span>
 					</span>
 				</template>
-				<uv-cell center title="我的动态" isLink url="/pages/myDynamics/myDynamics">
+				<uv-cell center title="我的动态" isLink url="/pages/myDynamics/myDynamics" v-if="0">
 					<template #icon><van-icon name="fire-o" /></template>
 				</uv-cell>
 				<uv-cell center title="我的个性签名" isLink url="/pages/signature/signature">
 					<template #icon><van-icon name="description-o" /></template>
 				</uv-cell>
-				<uv-cell center title="我的历史行为" isLink url="/pages/userHistory/userHistory">
+				<uv-cell center title="我的历史行为" isLink url="/pages/userHistory/userHistory" v-if="0">
 					<template #icon><van-icon name="browsing-history-o" /></template>
 					
 				</uv-cell>
-				<uv-cell title="去反馈" is-link url="/pages/feedback/feedback">
-				
-				</uv-cell>
+				<uv-cell title="去反馈" is-link url="/pages/feedback/feedback"></uv-cell>
 			</uv-cell-group>
 			<van-button type="danger" block @click="onClickLogout">退出登录</van-button>
 		
