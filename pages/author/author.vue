@@ -112,6 +112,17 @@ const versionClick=(version)=>{
 				</template>
 			</van-cell>
 			</van-collapse-item>
+			<van-collapse-item  title="使用vuepress搭建的站点"
+			>	<van-cell
+				center
+				
+			>
+				<template v-slot:title>
+					<uv-link href="https://mhxy13867806343.github.io/vuepressBlogDemo/"
+					         text="200s's 的个人博客区" :under-line="true"></uv-link>
+				</template>
+			</van-cell>
+			</van-collapse-item>
 		</van-collapse>
 		<van-cell-group inset>
 			<van-cell center title="作者语录" :value="data&&data.saying"></van-cell>
