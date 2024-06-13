@@ -221,6 +221,10 @@ const onConfirm=()=>{
 				<view class="slot-content-connitem">
 					前端由vue/uniapp相关的组件实现界面的展示，交互和样式处理
 				</view>
+				<uv-text @click="setClipboardData('869710179@qq.com','(复制成功，快去发送邮件给作者)')" text="有问题可以发邮件到我的邮件中去吧:
+				
+				869710179@qq.com(点击复制)" mode="text" >
+				</uv-text>
 			</view>
 		</uv-modal>
 	</view>
