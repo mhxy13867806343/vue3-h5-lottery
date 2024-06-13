@@ -34,9 +34,9 @@ export default ()=>{
     const getGithubSearchUrlMoreCbAjax=(cb,data)=>{
         cb(data).then(res=>{
             getResCopy(res.result ||[])
-           if(!res.length){
-               isLen.value=true
-           }
+           // if(!res.length){
+           //     isLen.value=true
+           // }
         }).catch(e=>{
         
         })

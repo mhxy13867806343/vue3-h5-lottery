@@ -31,13 +31,9 @@ const modalRef=ref(null)
 const onClickSearch=(q)=>{
 	dataList.value={}
 	search.value=q
-	getGithubSearch({
-		q,
-		type: "repositories",
-		p:offset.value
-	}).then(res=>{
-		dataList.value=res ||{}
-	})
+	currentPage.value=0
+	offset.value=1
+	getGithubSearch1()
 }
 const replaceUrl=text=>{
 	const str=text.replace(/<[^>]+>/g, '')
@@ -76,7 +72,16 @@ const onClickGitMore=(url)=>{
 }
 const onPageChange=(page)=>{
 	offset.value=page
-	onClickSearch(search.value)
+	getGithubSearch1()
+}
+const getGithubSearch1=()=>{
+	getGithubSearch({
+		q:search.value,
+		type: "repositories",
+		p:offset.value
+	}).then(res=>{
+		dataList.value=res.result ||{}
+	})
 }
 const homemodel=cacheDataRef.homemodel
 onMounted(()=>{
