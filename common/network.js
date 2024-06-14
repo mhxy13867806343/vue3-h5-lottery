@@ -1,5 +1,6 @@
 import ".env"
 import { cacheDataRef } from "@/common/tools";
+import store from "@/store";
 import { Toast } from "vant";
 const request = (options={}) => {
 	if (!options.url) {
@@ -31,7 +32,22 @@ const request = (options={}) => {
 				const datas=res.data.data
 				// console.log(datas)
 				const {code,result,message}=datas
-		
+				if(code===401){
+					uni.showToast({
+						title:message,
+						icon:'none'
+					})
+					
+					uni.reLaunch({
+						url:'/pages/login/login',
+						complete() {
+							uni.clearStorage()
+							store.dispatch('setClearUserData')
+						},
+					})
+					reject(datas)
+					return
+				}
 				if(code!==200){
 					uni.showToast({
 						title:message,
