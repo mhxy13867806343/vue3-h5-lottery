@@ -9,9 +9,9 @@ export default ()=>{
    
     const formRef=ref(null)
     const model=reactive({
-        account: '18072783978',
-        password: 'aS1234567!@',
-        newpassword: 'aS1234567!@',
+        account: '',
+        password: '',
+        newpassword: '',
     })
     const isPassword=ref(true)
     const rules=reactive({
