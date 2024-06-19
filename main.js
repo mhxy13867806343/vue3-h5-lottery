@@ -1,3 +1,4 @@
+import { cacheImg403 } from "@/common/tools";
 import App from './App'
 import uvUI from '@/uni_modules/uv-ui-tools'
 
@@ -16,6 +17,7 @@ Vue.prototype.$store = store
 Vue.prototype.$processImg =(img)=>{
     return `${process.uniEnv.BASE_API}/${img}`
 }
+Vue.prototype.$cacheImg403=img=>cacheImg403(img)
 Vue.component('Mtabbar', Mtabbar)
 Vue.component('Histry', Histry)
 // #ifndef VUE3

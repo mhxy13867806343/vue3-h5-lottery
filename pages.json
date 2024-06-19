@@ -379,6 +379,26 @@
         "navigationBarTitleText": "工具类",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/lucky/lucky",
+      "style": {
+        "navigationBarTitleText": "抽奖",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/pins/pins",
+      "style": {
+        "navigationBarTitleText": "沸点",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        // 隐藏系统导航栏
+        "navigationBarTextStyle": "black"
+      }
     }
   ],
   "subPackages": [

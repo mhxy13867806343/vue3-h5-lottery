@@ -23,6 +23,10 @@ const cellRouterList=[
 		value:'更多it之家资源'
 	},
 	{
+		url:'/pages/pins/pins',
+		value:'沸点内容'
+	},
+	{
 		url:'/pages/hot/hot'
 		,value:'更多热点资源'
 	}

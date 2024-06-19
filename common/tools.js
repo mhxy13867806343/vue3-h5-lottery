@@ -81,3 +81,10 @@ export function formatDayjsTime(date) {
         return date.format('YYYY-MM-DD HH:mm:ss');
     }
 }
+export function cacheImg403(img) {
+    const url="https://images.weserv.nl/?url="
+    if (!img){
+        return ""
+    }
+    return `${url}${img}`
+}

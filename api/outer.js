@@ -1,4 +1,13 @@
 import request from '@/common/network';
+
+export const getPins = (data) => {
+    return request({
+        url: '/v1/h5/outer/pins',
+        data,
+    })
+}
+
+
 export const postLogin = (data) => {
     return request({
         url: '/v1/h5/user/login',
