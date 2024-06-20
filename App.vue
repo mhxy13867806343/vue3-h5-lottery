@@ -46,4 +46,6 @@
     @import "@/GraceUI5-157599/GraceUI5/css/graceUI.css";
     /* 加载主题样式 */
     @import "@/GraceUI5-157599/GraceUI5/skin/black.css";
+    
+    @import "@/common/style/h5-button.css";
 </style>

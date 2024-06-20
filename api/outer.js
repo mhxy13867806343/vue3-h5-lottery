@@ -1,4 +1,10 @@
 import request from '@/common/network';
+export const getUserList = (data) => {
+    return request({
+        url: '/v1/h5/outer/user_list',
+        data,
+    })
+}
 
 export const getPins = (data) => {
     return request({

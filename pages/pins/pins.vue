@@ -1,8 +1,8 @@
 
 <script setup>
 import { cacheImg403 } from "@/common/tools";
-import { getPins } from "@/api/outer";
-import dayjs from "dayjs";
+import { getPins,getUserList } from "@/api/outer";
+import { Toast } from "vant";
 const list=ref([])
 const cursor=ref('')
 const total=ref(0)
@@ -11,6 +11,9 @@ const loading=ref(false)
 const finished=ref(false)
 const show=ref(false)
 const userList=ref([])
+const userCursor=ref("0")
+const userHasMore=ref(false)
+const userId=ref('')
 const tabList=[
 	{
 		title:'热度',
@@ -86,24 +89,85 @@ const onClickMsgInfoImg=(a,current,urls)=>{
 		indicator:'number'
 	});
 }
-const onClickDiggUser=arr=>{
+const onClickDiggUser=(item_id)=>{
+	userId.value=item_id
+	userCursor.value=''
+	userHasMore.value=false
 	userList.value=[]
-	show.value=true
-	userList.value=arr
+	getUserList1()
+}
+const getUserList1=()=>{
+	
+	getUserList({
+		item_id:userId.value,
+		cursor:userCursor.value
+	}).then(res=>{
+		const {result,code}=res
+		if(code===200){
+			const {data,err_no,err_msg,cursor,has_more}=result
+			userHasMore.value=has_more
+			if(err_no===0) {
+				if(data.length){
+					userList.value = [...userList.value,...data]
+					show.value = true
+					userCursor.value = cursor
+				}
+				
+			}else{
+				show.value=false
+				Toast.fail(err_msg)
+			}
+		}
+	}).catch(e=>{
+		console.log(e)
+		show.value=false
+	})
 }
 </script>
 <template>
 	<view class="app-container">
-		<van-popup v-model="show" closeable round>
-			<van-cell is-link center
-			          :title="a.user_name"
-			          :label="a.job_title"
-			v-for="(a,b) in userList" :key="b"
+		<van-popup v-model="show" closeable round
+		           
+		           :style="{ width: '90%', height: '90%'}"
+		>
+			<view  v-for="(a,b) in userList" :key="a.user_id" class="search-uv-flex app-container">
+				<uv-image
+					width="50"
+					height="50"
+					:src="a.avatar_large" lazy-load shape="circle" observeLazyLoad :fade="true" duration="450">
+					
+					<template v-slot:loading>
+						<uv-loading-icon></uv-loading-icon>
+					</template>
+					<template v-slot:error>
+						<view style="font-size: 24rpx;">加载失败</view>
+					</template>
+				</uv-image>
+				<van-cell is-link center
+				          :title="a.user_name"
+				          :label="a.job_title"
+				         
+				>
+					<template #right-icon>
+						<uv-link :href="`https://juejin.cn/user/${a.user_id}`" :text="`${a.user_name+a.company}`" :under-line="true"></uv-link>
+					</template>
+				</van-cell>
+				<view class="followee search-uv-flex flex-wrap align-items-center">
+					<view>关注了：{{  a.followee_count}}</view>
+					<view>关注者：{{  a.follower_count}}</view>
+					<view>当前版本：LV{{  a.level}}</view>
+				</view>
+				
+			</view>
+			<uv-line margin="30rpx"></uv-line>
+			<button :class="[userHasMore?'button button-primary button-rounded    status-btn-width':'']"
+			        v-if="userList.length"
+			        class="button-large"
+			:disabled="!userHasMore"
+			        @click="getUserList1"
 			>
-				<template #right-icon>
-					<uv-link :href="`https://juejin.cn/user/${a.user_id}`" :text="`${a.user_name+a.company}`" :under-line="true"></uv-link>
-				</template>
-			</van-cell>
+				{{ !userHasMore?'没有更多了':'加载更多'}}({{ userList.length	}})
+			</button>
 		</van-popup>
 		<van-tabs v-model="active" sticky animated swipeable @change="onChange">
 			<van-tab :title="a.title" v-for="(a,b) in tabList" :key="b">
@@ -177,13 +241,13 @@ const onClickDiggUser=arr=>{
 								</view>
 								<uv-line margin="30rpx"></uv-line>
 								<view class="pins-hot search-uv-flex justify-content-flex-end align-items-center"
-								      @click="onClickDiggUser(a&&a.digg_user&&a.digg_user)"
+								      @click="onClickDiggUser(a.msg_id)"
 								      v-if="a&&a.digg_user&&a.digg_user.length">
 									<view class="msg_Info-pic_list msg_Info-pic_list-digg"
 									     
 									     
 									      v-for="(k1,k2) in a&&a.digg_user" :key="k2">
-										<uv-image
+										<uv-image observeLazyLoad lazy-load
 											:class="[k2===0?'':'msg_Info-pic_list-digg-img']"
 											class=""
 											shape="circle"
