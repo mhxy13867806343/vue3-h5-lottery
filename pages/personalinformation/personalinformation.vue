@@ -38,6 +38,8 @@ const birtehday=computed(()=>{
 		<uv-cell-group >
 			<uv-cell title="当前用户状态" center isLink
 			         :value="+data.status===0?'正常':'禁用'"
+			         url="/pages/userUpdate/userUpdate"
+			         label="修改用户信息"
 			        
 			></uv-cell>
 			<uv-cell title="当前用户昵称" center isLink
